@@ -121,6 +121,10 @@ class Algorithm():
         code_list = []
 
         input_operands, output_operands = self.initial_equations.input_output()
+
+        #print(self.memory.lookup[input_operands[0].name].name)
+        #print(self.memory.lookup[input_operands[0].name].size)
+
         self.experiment_input = ", ".join(["{}::{}".format(self.memory.lookup[operand.name].name, operand_type(operand)) for operand in input_operands])
 
         ## ADDED BY ARAVIND
@@ -130,8 +134,11 @@ class Algorithm():
 
         code_list.append("{0}cost {1:.3g}\n".format(config.comment, self.cost))
 
+        #print(code_list)
+        #exit(code=-1)
         if config.c:
             code_list.append("int info = 0;\n\n")
+
 
         for line_number, matched_kernel in enumerate(self.matched_kernels):
             code_list.append(self._matched_kernel_to_code(matched_kernel, line_number))
@@ -182,6 +189,7 @@ class Algorithm():
         # mem_content = "".join([config.comment, self.memory.content_string(), "\n"])
         lines_list.append(mem_content)
 
+
         # TODO arguments could be a stack or something, removing processed arguments. Then we don't need late_arguments.
         arguments = copy.copy(matched_kernel.arguments)
         argument_mapping = dict()
@@ -226,8 +234,12 @@ class Algorithm():
                      lines_list.append("\n{}sizeArg {}:{}".format(config.comment, mem_op.destination.name, mem_op.destination.size))
             lines_list.append("\n")
             #####################
+
             mem_code_before = "".join([mem_op.code() for mem_op in mem_ops_before])
             lines_list.append(mem_code_before)
+
+        #print(mem_ops_before[0].mem_loc.name)
+        #print(mem_ops_before[0].mem_loc.size)
 
         # print(late_arguments)
         for argument in late_arguments:
@@ -261,7 +273,9 @@ class Algorithm():
         lines_list.append(" ".join([v for v in operand_mapping.values()]))
         lines_list.append("\n")
         ####################
-        
+        #print([v for v in operand_mapping.values()])
+        #exit(code=-1)
+
         lines_list.append(signature.safe_substitute_str(argument_mapping))
         lines_list.append("\n")
 
@@ -461,18 +475,6 @@ class MatchedKernel():
         self.kernel_io = None
 
 
-def derivation_to_file(output_name, subdir_name, algorithm_name, derivation):
-    file_name = os.path.join(config.output_code_path, output_name, config.language.name, subdir_name, "derivation", algorithm_name)
-    directory_name = os.path.dirname(file_name)
-    if not os.path.exists(directory_name):
-        os.makedirs(directory_name)
-    output_file = open(file_name, "wt")
-    output_file.write(derivation)
-    output_file.close()
-    if config.verbosity >= 2:
-        print("Generate derivation file {}".format(file_name))
-
-
 def algorithm_to_file(output_name, subdir_name, algorithm_name, algorithm, input, output,
                       language = config.language,
                       file_extension = config.filename_extension,
@@ -530,9 +532,9 @@ def operand_type(operand, property_types=False):
             return "Diagonal{{{0},Array{{{0},1}}}}".format(config.data_type_string)
         elif operand.has_property(properties.SYMMETRIC) or operand.has_property(properties.SPD) or operand.has_property(properties.SPSD):
             return "Symmetric{{{0},Array{{{0},2}}}}".format(config.data_type_string)
-        elif operand.has_property(properties.LOWER_TRIANGULAR) and operand.has_property(properties.SQUARE):
+        elif operand.has_property(properties.LOWER_TRIANGULAR):
             return "LowerTriangular{{{0},Array{{{0},2}}}}".format(config.data_type_string)
-        elif operand.has_property(properties.UPPER_TRIANGULAR) and operand.has_property(properties.SQUARE):
+        elif operand.has_property(properties.UPPER_TRIANGULAR):
             return "UpperTriangular{{{0},Array{{{0},2}}}}".format(config.data_type_string)
         else:
             return "Array{{{0},2}}".format(config.data_type_string)

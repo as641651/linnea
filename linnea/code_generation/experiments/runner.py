@@ -16,7 +16,7 @@ algorithm_test = {config.Language.Julia: textwrap.dedent(
                                          """),
                     config.Language.Cpp: ""}
 
-algorithm_plot = {config.Language.Julia: """Benchmarker.add_data(plotter, ["{0}"; {1}], Benchmarker.measure(20, {0}, map(MatrixGenerator.unwrap, matrices)...) );""",
+algorithm_plot = {config.Language.Julia: """Benchmarker.add_data(plotter, ["{0}"; {1}], Benchmarker.measure(3, {0}, map(MatrixGenerator.unwrap, matrices)...) );""",
                     config.Language.Cpp: ""}
 
 
@@ -45,7 +45,8 @@ def runner_to_file(runner_name, output_name, language, num_threads, algorithms=[
     plot_format = algorithm_plot.get(language)
 
     for subdir_name, algorithm_name in algorithms:
-        includes.append(incl_format.format(subdir_name, algorithm_name))
+        #includes.append(incl_format.format(subdir_name, algorithm_name))
+        includes.append(incl_format.format("experiments", algorithm_name))
         tests.append(test_format.format(algorithm_name))
         plots.append(plot_format.format(algorithm_name, num_threads))
 
