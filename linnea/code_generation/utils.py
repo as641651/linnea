@@ -115,6 +115,10 @@ class Algorithm():
         TODO this is inconsistent. memory and known_lines are attributes,
         matched_kernel and line_number is passed to memory.add_operation
         """
+        ### ADDED BY ARAVIND
+        ## Resets the variable name counter
+        memory_module.MemoryLocation._counter = 0
+        ####################
 
         self.memory = memory_module.Memory(self.initial_equations)
         self.known_lines = set()
@@ -261,7 +265,7 @@ class Algorithm():
         lines_list.append(" ".join([v for v in operand_mapping.values()]))
         lines_list.append("\n")
         ####################
-        
+
         lines_list.append(signature.safe_substitute_str(argument_mapping))
         lines_list.append("\n")
 
