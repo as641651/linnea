@@ -160,9 +160,10 @@ def read_trace(experiment_name, number_of_experiments):
                         processed_data = dict()
                         # processed_data = pd.DataFrame() # [], index=[], columns=[example]
                         min_cost = df["cost"].min()
+                        max_cost = df["cost"].max()
                         processed_data["first_solution_time"] = df["time"].min()
                         processed_data["best_solution_time"] = df["time"].max()
-                        processed_data["first_solution_cost"] = df["cost"].max()
+                        processed_data["first_solution_cost"] = max_cost
                         processed_data["best_solution_cost"] = min_cost
                         for p in [1, 5, 10, 15, 25]:
                             processed_data["time_to_{}pc".format(p)] = df.loc[df["cost"] < (min_cost * (1+p/100))]["time"].min()
@@ -503,7 +504,7 @@ def process_data_trace(trace_data, experiment):
 def process_write_time(write_time_data, experiment):
     if not write_time_data.empty:
         write_time_data.to_csv("{}_write_time.csv".format(experiment), na_rep="NaN")
-        write_time_data.unstack().mean().to_csv("{}_write_time_avg.csv".format(experiment), na_rep="NaN")
+        write_time_data.unstack().mean().to_csv("{}_write_time_avg.csv".format(experiment), na_rep="NaN", header=True)
 
 
 def process_data_k_best(data, intensity_data, experiment_name):

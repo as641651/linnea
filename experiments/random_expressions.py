@@ -18,8 +18,8 @@ from linnea.algebra.properties import Property as properties
 
 _counter = -1
 
-def operand_size():
-    return random.randrange(50, 2001, 50)
+def operand_size(lower=50):
+    return random.randrange(lower, 2001, 50)
 
 def operand_sizes():
     rand = random.random()
@@ -76,20 +76,25 @@ def matrix_chain_sizes(first, last, length, nonsingular=False):
     sizes = [first]
     for i in range(length-1):
         rand = random.random()
-        if rand > 0.5: # 0.6 <= rand < 0.95:
-            # square
-            next_size = sizes[i]
-        elif rand > 0.4: # 0.95 <= rand:
-            # vector
-            next_size = 1
+        if nonsingular:
+            if rand > 1:
+                # square
+                next_size = sizes[i]
+            else:
+                # non-square
+                # This makes sure that the resulting chain is not singular. That
+                # would happen if an "inner size" is smaller than an "outer size".
+                next_size = operand_size(lower=min(first, last))
         else:
-            # non-square
-            next_size = operand_size()
-
-        if nonsingular and next_size < min(first, last):
-            # This makes sure that the resulting chain is not singular. That
-            # would happen if an "inner size" is smaller than an "outer size".
-            next_size = min(first, last)
+            if rand > 0.4:
+                # square
+                next_size = sizes[i]
+            elif rand > 0.38:
+                # vector
+                next_size = 1
+            else:
+                # non-square
+                next_size = operand_size()
         
         sizes.append(next_size)
 
@@ -126,6 +131,21 @@ def random_composition(n):
     return composition
 
 
+def random_composition_v2(n):
+    if n == 2:
+        return [1, 1]
+    else:  
+        num = random.randint(1, 2**(n-1)-2)
+        bitseq = bin(num)[2:].zfill(n-1)
+        composition = [1]
+        for bit in bitseq:
+            if bit == "0":
+                composition[-1] += 1
+            elif bit == "1":
+                composition.append(1)
+        return composition
+
+
 def generate_expression(n_ops, expr_size, parent=None, nonsingular=False):
     if n_ops == 1:
 
@@ -134,7 +154,7 @@ def generate_expression(n_ops, expr_size, parent=None, nonsingular=False):
             if rows == 1:
                 return generate_scalar()
             
-            if random.random() > 0.5:
+            if random.random() > 0.2:
 
                 if parent.arity == Arity.unary:
                     if parent is ae.Inverse:
@@ -144,9 +164,9 @@ def generate_expression(n_ops, expr_size, parent=None, nonsingular=False):
                 else:
                     operators = [ae.Transpose, ae.Inverse]
                     if parent is ae.Plus:
-                        weights = [2, 1]
+                        weights = [10, 1]
                     else:
-                        weights = [1, 3]
+                        weights = [1, 10]
 
                     operator = random.choices(operators, weights)[0]
 
@@ -166,10 +186,25 @@ def generate_expression(n_ops, expr_size, parent=None, nonsingular=False):
 
 
     else:
-        # TODO do we really want to use transpose here? it gets pushed down anyway, and it leads to those towers
-        if expr_size[0] == expr_size[1]:
-            # operators = [ae.Times, ae.Plus, ae.Transpose, ae.Inverse]
+        if n_ops <= 5 and expr_size[0] == expr_size[1] and random.random() > 0.9:
+            if n_ops % 2 == 0:
+                if nonsingular:
+                    inner_size = operand_size(lower=expr_size[0])
+                else:
+                    inner_size = operand_size()
+                expr = generate_expression(n_ops // 2, (expr_size[0], inner_size), parent=ae.Plus, nonsingular=nonsingular)
+                return ae.Times(expr, ae.Transpose(expr))
+            else:
+                if nonsingular:
+                    inner_size = operand_size(lower=expr_size[0])
+                else:
+                    inner_size = operand_size()
+                expr = generate_expression(n_ops // 2, (expr_size[0], inner_size), parent=ae.Plus, nonsingular=nonsingular)
+                expr_center = generate_expression(1, (inner_size, inner_size), parent=ae.Plus, nonsingular=nonsingular)
+                return ae.Times(expr, expr_center, ae.Transpose(expr))
 
+
+        if expr_size[0] == expr_size[1]:
             """Trying to tweak probabilities to get more realistic expressions.
             Mostly trying to avoid explicit inversion, which is rare.
             """
@@ -181,14 +216,20 @@ def generate_expression(n_ops, expr_size, parent=None, nonsingular=False):
                 weights = [4, 1]
             elif parent is ae.Inverse:
                 operators = [ae.Times, ae.Plus]
-                weights = [3, 1]    
+                weights = [2, 1]    
             elif parent is None:
                 operators = [ae.Times, ae.Plus, ae.Inverse]
-                weights = [5, 3, 1]
+                weights = [16, 10, 1]
         else:
-            # operators = [ae.Times, ae.Plus, ae.Transpose]
-            operators = [ae.Times, ae.Plus]
-            weights = [3, 1]
+            if parent is ae.Times:
+                operators = [ae.Plus]
+                weights = [1]
+            elif parent is ae.Plus:
+                operators = [ae.Times]
+                weights = [1]
+            else:
+                operators = [ae.Times, ae.Plus]
+                weights = [3, 1]
 
 
         operator = random.choices(operators, weights)[0]
@@ -199,7 +240,8 @@ def generate_expression(n_ops, expr_size, parent=None, nonsingular=False):
             expr = operator(generate_expression(n_ops, tuple(reversed(expr_size)), parent=operator, nonsingular=nonsingular))
             return expr
         elif operator.arity == Arity.variadic:
-            partition = random_composition(n_ops)
+            # partition = random_composition(n_ops)
+            partition = random_composition_v2(n_ops)
             if operator == ae.Plus:
                 expr = operator(*(generate_expression(n, expr_size, parent=operator, nonsingular=nonsingular) for n in partition))
             elif operator == ae.Times:
@@ -224,14 +266,65 @@ def main():
     # expr = generate_expression(6, expr_size)
     # print(expr)
     # print(simplify(expr))
-    # print(check_validity(expr))
+    # print(expr.check_validity())
 
-    size = random.randint(3, 7)
-    eqn = generate_equation(size)
-    print(eqn)
-    # eqn = eqn.to_normalform()
+    # size = random.randint(3, 7)
+    # eqn = generate_equation(size)
     # print(eqn)
-    print(check_validity(eqn))
+    # # eqn = eqn.to_normalform()
+    # # print(eqn)
+    # print(eqn.check_validity())
+
+    random.seed(0)
+    rand_exprs = [generate_equation(random.randint(4, 7)) for _ in range(100)]
+    i = 0
+    no_full_matrix = 0
+    no_inverse = 0
+    result_is_vector = 0
+    contains_scalars = 0
+    no_square_matrix = 0
+    no_non_square_matrix = 0
+    for idx, eqn in enumerate(rand_exprs, 1):
+        if not any((isinstance(subexpr, ae.Matrix) and not subexpr.has_property(properties.DIAGONAL)) for subexpr, _ in eqn[0].rhs.preorder_iter()):
+        #     print(idx, eqn)
+            no_full_matrix += 1
+
+        if not any((isinstance(subexpr, ae.Inverse) or isinstance(subexpr, ae.InverseTranspose)) for subexpr, _ in eqn[0].rhs.preorder_iter()):
+            # print(idx, eqn)
+            no_inverse += 1
+
+        if eqn[0].rhs.has_property(properties.VECTOR):
+            # print(idx, eqn)
+            result_is_vector += 1
+
+        non_square = 0
+        square = 0
+        for subexpr, _ in eqn[0].rhs.preorder_iter():
+            if isinstance(subexpr, ae.Matrix) and not subexpr.has_property(properties.SQUARE):
+                non_square += 1
+                # print(subexpr.size)
+            else:
+                square += 1
+        if not square:
+            no_square_matrix += 1
+        if not non_square:
+            no_non_square_matrix += 1
+
+
+
+        print(idx, eqn)
+        # print("non_square", non_square)
+
+        if any(isinstance(subexpr, ae.Scalar) for subexpr, _ in eqn[0].rhs.preorder_iter()):
+            contains_scalars += 1
+
+    print("############")
+    print("no_full_matrix", no_full_matrix)
+    print("no_inverse", no_inverse)
+    print("result_is_vector", result_is_vector)
+    print("contains_scalars", contains_scalars)
+    print("no_square_matrix", no_square_matrix)
+    print("no_non_square_matrix", no_non_square_matrix)
 
 
 """
