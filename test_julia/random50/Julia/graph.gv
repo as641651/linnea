@@ -1,0 +1,524 @@
+digraph G {
+ranksep=2.5;
+rankdir=TB;
+node0 [shape=record, label="{ out = ((M278 M279^T M280^T M281) + (M278 M279^T M280^T M282^T)) |{ 0 | None | None | 0 |  |  } }"];
+node0 -> node1 [style=bold, label="tmp1 = (M281 + M282^T) 3.9e+05"];
+node0 -> node6 [label="tmp2 = (M279 M278) 1.94e+09"];
+node0 -> node13 [label=""];
+node0 -> node34 [label="tmp8 = (M280^T M281) 2.34e+08
+tmp12 = (M279^T tmp8) 2.16e+08
+tmp9 = (M278 tmp12) 1.3e+09"];
+node0 -> node48 [label="tmp2 = (M279 M278) 1.94e+09"];
+node0 -> node73 [label="tmp3 = (M279^T M280^T) 2.11e+09"];
+node0 -> node96 [label="tmp3 = (M279^T M280^T) 2.11e+09"];
+node0 -> node1 [style=bold, label="tmp1 = (M281 + M282^T) 3.9e+05"];
+node0 -> node135 [label="tmp8 = (M280^T M281) 2.34e+08"];
+node0 -> node245 [label="tmp2 = (M279 M278) 1.94e+09"];
+node0 -> node261 [label="tmp3 = (M279^T M280^T) 2.11e+09"];
+node0 -> node273 [label="tmp10 = (M280^T M282^T) 2.34e+08"];
+
+node1 [shape=record, label="{ out = (M278 M279^T M280^T tmp1) |{ 1 | -1 | None | 3.9e+05 |  |  } }"];
+node1 -> node2 [style=bold, label="tmp4 = (M280^T tmp1) 2.34e+08
+tmp6 = (M279^T tmp4) 2.16e+08
+tmp7 = (M278 tmp6) 1.3e+09"];
+node1 -> node3 [label="tmp2 = (M279 M278) 1.94e+09"];
+node1 -> node24 [label="tmp3 = (M279^T M280^T) 2.11e+09"];
+node1 -> node28 [style=bold, label="tmp4 = (M280^T tmp1) 2.34e+08"];
+
+node2 [shape=record, label="{ out = tmp7 |{ 2 | -1 | None | 1.75e+09 |  |  } }"];
+
+node3 [shape=record, label="{ out = (tmp2^T M280^T tmp1) |{ 3 | -1 | None | 1.94e+09 |  |  } }"];
+node3 -> node2 [label="tmp4 = (M280^T tmp1) 2.34e+08
+tmp7 = (tmp2^T tmp4) 2.16e+08"];
+node3 -> node5 [label="tmp5 = (tmp2^T M280^T) 2.11e+09"];
+node3 -> node21 [label="tmp4 = (M280^T tmp1) 2.34e+08"];
+
+node5 [shape=record, label="{ out = (tmp5 tmp1) |{ 5 | -1 | None | 4.05e+09 |  | pruned } }"];
+
+node6 [shape=record, label="{ out = ((tmp2^T M280^T M281) + (tmp2^T M280^T M282^T)) |{ 6 | -1 | None | 1.94e+09 |  |  } }"];
+node6 -> node3 [label="tmp1 = (M281 + M282^T) 3.9e+05"];
+node6 -> node8 [label="tmp5 = (tmp2^T M280^T) 2.11e+09"];
+node6 -> node9 [label="tmp8 = (M280^T M281) 2.34e+08
+tmp9 = (tmp2^T tmp8) 2.16e+08"];
+node6 -> node46 [label="tmp5 = (tmp2^T M280^T) 2.11e+09"];
+node6 -> node15 [label=""];
+node6 -> node3 [label="tmp1 = (M281 + M282^T) 3.9e+05"];
+node6 -> node54 [label="tmp8 = (M280^T M281) 2.34e+08"];
+node6 -> node122 [label="tmp5 = (tmp2^T M280^T) 2.11e+09"];
+node6 -> node65 [label="tmp10 = (M280^T M282^T) 2.34e+08"];
+
+node8 [shape=record, label="{ out = ((tmp5 M281) + (tmp5 M282^T)) |{ 8 | -1 | None | 4.05e+09 |  | pruned } }"];
+
+node9 [shape=record, label="{ out = (tmp9 + (tmp2^T M280^T M282^T)) |{ 9 | -1 | None | 2.39e+09 |  |  } }"];
+node9 -> node10 [label="tmp10 = (M280^T M282^T) 2.34e+08
+tmp11 = (tmp2^T tmp10) 2.16e+08"];
+node9 -> node11 [label="tmp5 = (tmp2^T M280^T) 2.11e+09"];
+node9 -> node12 [label="tmp10 = (M280^T M282^T) 2.34e+08"];
+
+node10 [shape=record, label="{ out = (tmp11 + tmp9) |{ 10 | -1 | None | 2.84e+09 |  | pruned } }"];
+
+node11 [shape=record, label="{ out = (tmp9 + (tmp5 M282^T)) |{ 11 | -1 | None | 4.5e+09 |  | pruned } }"];
+
+node12 [shape=record, label="{ out = (tmp9 + (tmp2^T tmp10)) |{ 12 | -1 | None | 2.63e+09 |  | pruned } }"];
+
+node13 [shape=record, label="{ tmp5 = (M278 M279^T M280^T)\nout = ((tmp5 M281) + (tmp5 M282^T)) |{ 13 | -1 | None | 0 |  |  } }"];
+node13 -> node8 [label="tmp2 = (M279 M278) 1.94e+09
+tmp5 = (tmp2^T M280^T) 2.11e+09"];
+node13 -> node15 [label="tmp2 = (M279 M278) 1.94e+09"];
+node13 -> node18 [label="tmp3 = (M279^T M280^T) 2.11e+09"];
+
+node15 [shape=record, label="{ tmp5 = (tmp2^T M280^T)\nout = ((tmp5 M281) + (tmp5 M282^T)) |{ 15 | -1 | None | 1.94e+09 |  |  } }"];
+node15 -> node8 [label="tmp5 = (tmp2^T M280^T) 2.11e+09"];
+node15 -> node8 [label="tmp5 = (tmp2^T M280^T) 2.11e+09"];
+
+node18 [shape=record, label="{ tmp5 = (M278 tmp3)\nout = ((tmp5 M281) + (tmp5 M282^T)) |{ 18 | -1 | None | 2.11e+09 |  |  } }"];
+node18 -> node8 [label="tmp5 = (M278 tmp3) 1.26e+10"];
+node18 -> node8 [label="tmp5 = (M278 tmp3) 1.26e+10"];
+
+node21 [shape=record, label="{ out = (tmp2^T tmp4) |{ 21 | -1 | None | 2.18e+09 |  |  } }"];
+node21 -> node2 [label="tmp7 = (tmp2^T tmp4) 2.16e+08"];
+node21 -> node2 [label="tmp7 = (tmp2^T tmp4) 2.16e+08"];
+
+node24 [shape=record, label="{ out = (M278 tmp3 tmp1) |{ 24 | -1 | None | 2.11e+09 |  |  } }"];
+node24 -> node2 [label="tmp6 = (tmp3 tmp1) 1.4e+09
+tmp7 = (M278 tmp6) 1.3e+09"];
+node24 -> node5 [label="tmp5 = (M278 tmp3) 1.26e+10"];
+node24 -> node27 [label="tmp6 = (tmp3 tmp1) 1.4e+09"];
+
+node27 [shape=record, label="{ out = (M278 tmp6) |{ 27 | -1 | None | 4.5e+08 |  |  } }"];
+node27 -> node2 [style=bold, label="tmp7 = (M278 tmp6) 1.3e+09"];
+node27 -> node2 [style=bold, label="tmp7 = (M278 tmp6) 1.3e+09"];
+
+node28 [shape=record, label="{ out = (M278 M279^T tmp4) |{ 28 | -1 | None | 2.34e+08 |  |  } }"];
+node28 -> node2 [style=bold, label="tmp6 = (M279^T tmp4) 2.16e+08
+tmp7 = (M278 tmp6) 1.3e+09"];
+node28 -> node21 [label="tmp2 = (M279 M278) 1.94e+09"];
+node28 -> node27 [style=bold, label="tmp6 = (M279^T tmp4) 2.16e+08"];
+
+node34 [shape=record, label="{ out = (tmp9 + (M278 M279^T M280^T M282^T)) |{ 34 | -1 | None | 1.75e+09 |  |  } }"];
+node34 -> node10 [label="tmp10 = (M280^T M282^T) 2.34e+08
+tmp13 = (M279^T tmp10) 2.16e+08
+tmp11 = (M278 tmp13) 1.3e+09"];
+node34 -> node9 [label="tmp2 = (M279 M278) 1.94e+09"];
+node34 -> node37 [label="tmp3 = (M279^T M280^T) 2.11e+09"];
+node34 -> node38 [label="tmp10 = (M280^T M282^T) 2.34e+08"];
+
+node37 [shape=record, label="{ out = (tmp9 + (M278 tmp3 M282^T)) |{ 37 | -1 | None | 3.85e+09 |  | pruned } }"];
+
+node38 [shape=record, label="{ out = (tmp9 + (M278 M279^T tmp10)) |{ 38 | -1 | None | 1.98e+09 |  |  } }"];
+node38 -> node10 [label="tmp13 = (M279^T tmp10) 2.16e+08
+tmp11 = (M278 tmp13) 1.3e+09"];
+node38 -> node12 [label="tmp2 = (M279 M278) 1.94e+09"];
+node38 -> node41 [label="tmp13 = (M279^T tmp10) 2.16e+08"];
+
+node41 [shape=record, label="{ out = (tmp9 + (M278 tmp13)) |{ 41 | -1 | None | 2.2e+09 |  |  } }"];
+node41 -> node10 [label="tmp11 = (M278 tmp13) 1.3e+09"];
+node41 -> node2 [label="tmp7 = (tmp9 + (M278 tmp13)) 1.3e+09"];
+node41 -> node2 [label="tmp7 = (tmp9 + (M278 tmp13)) 1.3e+09"];
+node41 -> node10 [label="tmp11 = (M278 tmp13) 1.3e+09"];
+
+node46 [shape=record, label="{ out = ((tmp5 M281) + (tmp2^T M280^T M282^T)) |{ 46 | -1 | None | 4.05e+09 |  | pruned } }"];
+
+node48 [shape=record, label="{ out = ((tmp2^T M280^T M281) + (M278 M279^T M280^T M282^T)) |{ 48 | -1 | None | 1.94e+09 |  |  } }"];
+node48 -> node34 [label="tmp8 = (M280^T M281) 2.34e+08
+tmp9 = (tmp2^T tmp8) 2.16e+08"];
+node48 -> node50 [label="tmp5 = (tmp2^T M280^T) 2.11e+09"];
+node48 -> node51 [label="tmp8 = (M280^T M281) 2.34e+08"];
+node48 -> node6 [label="tmp2 = (M279 M278) 1.94e+09"];
+node48 -> node57 [label="tmp3 = (M279^T M280^T) 2.11e+09"];
+node48 -> node63 [label="tmp10 = (M280^T M282^T) 2.34e+08"];
+
+node50 [shape=record, label="{ out = ((tmp5 M281) + (M278 M279^T M280^T M282^T)) |{ 50 | -1 | None | 4.05e+09 |  | pruned } }"];
+
+node51 [shape=record, label="{ out = ((tmp2^T tmp8) + (M278 M279^T M280^T M282^T)) |{ 51 | -1 | None | 2.18e+09 |  |  } }"];
+node51 -> node34 [label="tmp9 = (tmp2^T tmp8) 2.16e+08"];
+node51 -> node34 [label="tmp9 = (tmp2^T tmp8) 2.16e+08"];
+node51 -> node54 [label="tmp2 = (M279 M278) 1.94e+09"];
+node51 -> node55 [label="tmp3 = (M279^T M280^T) 2.11e+09"];
+node51 -> node58 [label="tmp10 = (M280^T M282^T) 2.34e+08"];
+
+node54 [shape=record, label="{ out = ((tmp2^T tmp8) + (tmp2^T M280^T M282^T)) |{ 54 | -1 | None | 2.18e+09 |  |  } }"];
+node54 -> node61 [label="tmp10 = (M280^T M282^T) 2.34e+08"];
+node54 -> node21 [label="tmp4 = (tmp8 + (M280^T M282^T)) 2.34e+08"];
+node54 -> node9 [label="tmp9 = (tmp2^T tmp8) 2.16e+08"];
+node54 -> node9 [label="tmp9 = (tmp2^T tmp8) 2.16e+08"];
+node54 -> node61 [label="tmp10 = (M280^T M282^T) 2.34e+08"];
+node54 -> node93 [label="tmp5 = (tmp2^T M280^T) 2.11e+09"];
+node54 -> node61 [label="tmp10 = (M280^T M282^T) 2.34e+08"];
+
+node55 [shape=record, label="{ out = ((tmp2^T tmp8) + (M278 tmp3 M282^T)) |{ 55 | -1 | None | 4.28e+09 |  | pruned } }"];
+
+node57 [shape=record, label="{ out = ((M278 tmp3 M282^T) + (tmp2^T M280^T M281)) |{ 57 | -1 | None | 4.05e+09 |  | pruned } }"];
+
+node58 [shape=record, label="{ out = ((tmp2^T tmp8) + (M278 M279^T tmp10)) |{ 58 | -1 | None | 2.41e+09 |  |  } }"];
+node58 -> node38 [label="tmp9 = (tmp2^T tmp8) 2.16e+08"];
+node58 -> node38 [label="tmp9 = (tmp2^T tmp8) 2.16e+08"];
+node58 -> node61 [label="tmp2 = (M279 M278) 1.94e+09"];
+node58 -> node62 [label="tmp13 = (M279^T tmp10) 2.16e+08"];
+
+node61 [shape=record, label="{ out = ((tmp2^T tmp10) + (tmp2^T tmp8)) |{ 61 | -1 | None | 2.41e+09 |  |  } }"];
+node61 -> node21 [label="tmp4 = (tmp10 + tmp8) 1.2e+05"];
+node61 -> node21 [label="tmp4 = (tmp10 + tmp8) 1.2e+05"];
+node61 -> node87 [label="tmp11 = (tmp2^T tmp10) 2.16e+08"];
+node61 -> node87 [label="tmp11 = (tmp2^T tmp10) 2.16e+08"];
+node61 -> node21 [label="tmp4 = (tmp10 + tmp8) 1.2e+05"];
+node61 -> node12 [label="tmp9 = (tmp2^T tmp8) 2.16e+08"];
+
+node62 [shape=record, label="{ out = ((M278 tmp13) + (tmp2^T tmp8)) |{ 62 | -1 | None | 2.63e+09 |  | pruned } }"];
+
+node63 [shape=record, label="{ out = ((M278 M279^T tmp10) + (tmp2^T M280^T M281)) |{ 63 | -1 | None | 2.18e+09 |  |  } }"];
+node63 -> node64 [label="tmp13 = (M279^T tmp10) 2.16e+08
+tmp11 = (M278 tmp13) 1.3e+09"];
+node63 -> node65 [label="tmp2 = (M279 M278) 1.94e+09"];
+node63 -> node66 [label="tmp13 = (M279^T tmp10) 2.16e+08"];
+node63 -> node71 [label="tmp5 = (tmp2^T M280^T) 2.11e+09"];
+node63 -> node58 [label="tmp8 = (M280^T M281) 2.34e+08"];
+
+node64 [shape=record, label="{ out = (tmp11 + (tmp2^T M280^T M281)) |{ 64 | -1 | None | 2.39e+09 |  |  } }"];
+node64 -> node10 [label="tmp8 = (M280^T M281) 2.34e+08
+tmp9 = (tmp2^T tmp8) 2.16e+08"];
+node64 -> node128 [label="tmp5 = (tmp2^T M280^T) 2.11e+09"];
+node64 -> node87 [label="tmp8 = (M280^T M281) 2.34e+08"];
+
+node65 [shape=record, label="{ out = ((tmp2^T tmp10) + (tmp2^T M280^T M281)) |{ 65 | -1 | None | 2.18e+09 |  |  } }"];
+node65 -> node61 [label="tmp8 = (M280^T M281) 2.34e+08"];
+node65 -> node21 [label="tmp4 = (tmp10 + (M280^T M281)) 2.34e+08"];
+node65 -> node64 [label="tmp11 = (tmp2^T tmp10) 2.16e+08"];
+node65 -> node64 [label="tmp11 = (tmp2^T tmp10) 2.16e+08"];
+node65 -> node61 [label="tmp8 = (M280^T M281) 2.34e+08"];
+node65 -> node132 [label="tmp5 = (tmp2^T M280^T) 2.11e+09"];
+node65 -> node61 [label="tmp8 = (M280^T M281) 2.34e+08"];
+
+node66 [shape=record, label="{ out = ((M278 tmp13) + (tmp2^T M280^T M281)) |{ 66 | -1 | None | 2.39e+09 |  |  } }"];
+node66 -> node64 [label="tmp11 = (M278 tmp13) 1.3e+09"];
+node66 -> node64 [label="tmp11 = (M278 tmp13) 1.3e+09"];
+node66 -> node69 [label="tmp5 = (tmp2^T M280^T) 2.11e+09"];
+node66 -> node62 [label="tmp8 = (M280^T M281) 2.34e+08"];
+
+node69 [shape=record, label="{ out = ((M278 tmp13) + (tmp5 M281)) |{ 69 | -1 | None | 4.5e+09 |  | pruned } }"];
+
+node71 [shape=record, label="{ out = ((tmp5 M281) + (M278 M279^T tmp10)) |{ 71 | -1 | None | 4.28e+09 |  | pruned } }"];
+
+node73 [shape=record, label="{ out = ((M278 tmp3 M281) + (M278 tmp3 M282^T)) |{ 73 | -1 | None | 2.11e+09 |  |  } }"];
+node73 -> node24 [label="tmp1 = (M281 + M282^T) 3.9e+05"];
+node73 -> node8 [label="tmp5 = (M278 tmp3) 1.26e+10"];
+node73 -> node37 [label="tmp12 = (tmp3 M281) 1.4e+09
+tmp9 = (M278 tmp12) 1.3e+09"];
+node73 -> node77 [label="tmp5 = (M278 tmp3) 1.26e+10"];
+node73 -> node18 [label=""];
+node73 -> node24 [label="tmp1 = (M281 + M282^T) 3.9e+05"];
+node73 -> node95 [label="tmp12 = (tmp3 M281) 1.4e+09"];
+node73 -> node121 [label="tmp5 = (M278 tmp3) 1.26e+10"];
+node73 -> node108 [label="tmp13 = (tmp3 M282^T) 1.4e+09"];
+
+node77 [shape=record, label="{ out = ((tmp5 M281) + (M278 tmp3 M282^T)) |{ 77 | -1 | None | 1.47e+10 |  | pruned } }"];
+
+node87 [shape=record, label="{ out = (tmp11 + (tmp2^T tmp8)) |{ 87 | -1 | None | 2.63e+09 |  | pruned } }"];
+
+node93 [shape=record, label="{ out = ((tmp5 M282^T) + (tmp2^T tmp8)) |{ 93 | -1 | None | 4.28e+09 |  | pruned } }"];
+
+node95 [shape=record, label="{ out = ((M278 tmp12) + (M278 tmp3 M282^T)) |{ 95 | -1 | None | 2.56e+09 |  |  } }"];
+node95 -> node109 [label="tmp13 = (tmp3 M282^T) 1.4e+09"];
+node95 -> node27 [label="tmp6 = (tmp12 + (tmp3 M282^T)) 1.4e+09"];
+node95 -> node37 [label="tmp9 = (M278 tmp12) 1.3e+09"];
+node95 -> node37 [label="tmp9 = (M278 tmp12) 1.3e+09"];
+node95 -> node109 [label="tmp13 = (tmp3 M282^T) 1.4e+09"];
+node95 -> node208 [label="tmp5 = (M278 tmp3) 1.26e+10"];
+node95 -> node109 [label="tmp13 = (tmp3 M282^T) 1.4e+09"];
+
+node96 [shape=record, label="{ out = ((M278 tmp3 M281) + (M278 M279^T M280^T M282^T)) |{ 96 | -1 | None | 2.11e+09 |  |  } }"];
+node96 -> node97 [label="tmp12 = (tmp3 M281) 1.4e+09"];
+node96 -> node97 [label="tmp12 = (tmp3 M281) 1.4e+09"];
+node96 -> node34 [label="tmp12 = (tmp3 M281) 1.4e+09
+tmp9 = (M278 tmp12) 1.3e+09"];
+node96 -> node50 [label="tmp5 = (M278 tmp3) 1.26e+10"];
+node96 -> node73 [label="tmp3 = (M279^T M280^T) 2.11e+09"];
+node96 -> node97 [label="tmp12 = (tmp3 M281) 1.4e+09"];
+node96 -> node103 [label="tmp10 = (M280^T M282^T) 2.34e+08"];
+node96 -> node119 [label="tmp2 = (M279 M278) 1.94e+09"];
+node96 -> node73 [label="tmp3 = (M279^T M280^T) 2.11e+09"];
+node96 -> node103 [label="tmp10 = (M280^T M282^T) 2.34e+08"];
+
+node97 [shape=record, label="{ out = ((M278 tmp12) + (M278 M279^T M280^T M282^T)) |{ 97 | -1 | None | 4.5e+08 |  |  } }"];
+node97 -> node109 [label="tmp10 = (M280^T M282^T) 2.34e+08
+tmp13 = (M279^T tmp10) 2.16e+08"];
+node97 -> node95 [label="tmp3 = (M279^T M280^T) 2.11e+09"];
+node97 -> node34 [label="tmp9 = (M278 tmp12) 1.3e+09"];
+node97 -> node34 [label="tmp9 = (M278 tmp12) 1.3e+09"];
+node97 -> node104 [label="tmp10 = (M280^T M282^T) 2.34e+08"];
+node97 -> node205 [label="tmp2 = (M279 M278) 1.94e+09"];
+node97 -> node95 [label="tmp3 = (M279^T M280^T) 2.11e+09"];
+node97 -> node104 [label="tmp10 = (M280^T M282^T) 2.34e+08"];
+
+node103 [shape=record, label="{ out = ((M278 tmp3 M281) + (M278 M279^T tmp10)) |{ 103 | -1 | None | 2.34e+09 |  |  } }"];
+node103 -> node104 [label="tmp12 = (tmp3 M281) 1.4e+09"];
+node103 -> node104 [label="tmp12 = (tmp3 M281) 1.4e+09"];
+node103 -> node38 [label="tmp12 = (tmp3 M281) 1.4e+09
+tmp9 = (M278 tmp12) 1.3e+09"];
+node103 -> node71 [label="tmp5 = (M278 tmp3) 1.26e+10"];
+node103 -> node108 [label="tmp13 = (M279^T tmp10) 2.16e+08"];
+node103 -> node104 [label="tmp12 = (tmp3 M281) 1.4e+09"];
+node103 -> node116 [label="tmp2 = (M279 M278) 1.94e+09"];
+node103 -> node108 [label="tmp13 = (M279^T tmp10) 2.16e+08"];
+
+node104 [shape=record, label="{ out = ((M278 tmp12) + (M278 M279^T tmp10)) |{ 104 | -1 | None | 6.84e+08 |  |  } }"];
+node104 -> node109 [label="tmp13 = (M279^T tmp10) 2.16e+08"];
+node104 -> node27 [label="tmp6 = (tmp12 + (M279^T tmp10)) 2.16e+08"];
+node104 -> node38 [label="tmp9 = (M278 tmp12) 1.3e+09"];
+node104 -> node38 [label="tmp9 = (M278 tmp12) 1.3e+09"];
+node104 -> node109 [label="tmp13 = (M279^T tmp10) 2.16e+08"];
+node104 -> node153 [label="tmp2 = (M279 M278) 1.94e+09"];
+node104 -> node109 [label="tmp13 = (M279^T tmp10) 2.16e+08"];
+
+node108 [shape=record, label="{ out = ((M278 tmp13) + (M278 tmp3 M281)) |{ 108 | -1 | None | 2.56e+09 |  |  } }"];
+node108 -> node109 [label="tmp12 = (tmp3 M281) 1.4e+09"];
+node108 -> node27 [label="tmp6 = (tmp13 + (tmp3 M281)) 1.4e+09"];
+node108 -> node111 [label="tmp11 = (M278 tmp13) 1.3e+09"];
+node108 -> node111 [label="tmp11 = (M278 tmp13) 1.3e+09"];
+node108 -> node109 [label="tmp12 = (tmp3 M281) 1.4e+09"];
+node108 -> node69 [label="tmp5 = (M278 tmp3) 1.26e+10"];
+node108 -> node109 [label="tmp12 = (tmp3 M281) 1.4e+09"];
+
+node109 [shape=record, label="{ out = ((M278 tmp12) + (M278 tmp13)) |{ 109 | -1 | None | 9e+08 |  |  } }"];
+node109 -> node27 [label="tmp6 = (tmp12 + tmp13) 7.2e+05"];
+node109 -> node27 [label="tmp6 = (tmp12 + tmp13) 7.2e+05"];
+node109 -> node41 [label="tmp9 = (M278 tmp12) 1.3e+09"];
+node109 -> node41 [label="tmp9 = (M278 tmp12) 1.3e+09"];
+node109 -> node27 [label="tmp6 = (tmp12 + tmp13) 7.2e+05"];
+node109 -> node144 [label="tmp11 = (M278 tmp13) 1.3e+09"];
+
+node111 [shape=record, label="{ out = (tmp11 + (M278 tmp3 M281)) |{ 111 | -1 | None | 3.85e+09 |  | pruned } }"];
+
+node116 [shape=record, label="{ out = ((tmp2^T tmp10) + (M278 tmp3 M281)) |{ 116 | -1 | None | 4.28e+09 |  | pruned } }"];
+
+node119 [shape=record, label="{ out = ((M278 tmp3 M281) + (tmp2^T M280^T M282^T)) |{ 119 | -1 | None | 4.05e+09 |  | pruned } }"];
+
+node121 [shape=record, label="{ out = ((tmp5 M282^T) + (M278 tmp3 M281)) |{ 121 | -1 | None | 1.47e+10 |  | pruned } }"];
+
+node122 [shape=record, label="{ out = ((tmp5 M282^T) + (tmp2^T M280^T M281)) |{ 122 | -1 | None | 4.05e+09 |  | pruned } }"];
+
+node128 [shape=record, label="{ out = (tmp11 + (tmp5 M281)) |{ 128 | -1 | None | 4.5e+09 |  | pruned } }"];
+
+node132 [shape=record, label="{ out = ((tmp5 M281) + (tmp2^T tmp10)) |{ 132 | -1 | None | 4.28e+09 |  | pruned } }"];
+
+node135 [shape=record, label="{ out = ((M278 M279^T tmp8) + (M278 M279^T M280^T M282^T)) |{ 135 | -1 | None | 2.34e+08 |  |  } }"];
+node135 -> node136 [label="tmp10 = (M280^T M282^T) 2.34e+08"];
+node135 -> node54 [label="tmp2 = (M279 M278) 1.94e+09"];
+node135 -> node34 [label="tmp12 = (M279^T tmp8) 2.16e+08
+tmp9 = (M278 tmp12) 1.3e+09"];
+node135 -> node51 [label="tmp2 = (M279 M278) 1.94e+09"];
+node135 -> node155 [label=""];
+node135 -> node28 [label="tmp4 = (tmp8 + (M280^T M282^T)) 2.34e+08"];
+node135 -> node97 [label="tmp12 = (M279^T tmp8) 2.16e+08"];
+node135 -> node136 [label="tmp10 = (M280^T M282^T) 2.34e+08"];
+node135 -> node226 [label="tmp2 = (M279 M278) 1.94e+09"];
+node135 -> node236 [label="tmp3 = (M279^T M280^T) 2.11e+09"];
+node135 -> node136 [label="tmp10 = (M280^T M282^T) 2.34e+08"];
+
+node136 [shape=record, label="{ out = ((M278 M279^T tmp10) + (M278 M279^T tmp8)) |{ 136 | -1 | None | 4.68e+08 |  |  } }"];
+node136 -> node28 [label="tmp4 = (tmp10 + tmp8) 1.2e+05"];
+node136 -> node61 [label="tmp2 = (M279 M278) 1.94e+09"];
+node136 -> node141 [label="tmp13 = (M279^T tmp10) 2.16e+08
+tmp11 = (M278 tmp13) 1.3e+09"];
+node136 -> node149 [label="tmp2 = (M279 M278) 1.94e+09"];
+node136 -> node174 [label=""];
+node136 -> node28 [label="tmp4 = (tmp10 + tmp8) 1.2e+05"];
+node136 -> node215 [label="tmp13 = (M279^T tmp10) 2.16e+08"];
+node136 -> node28 [label="tmp4 = (tmp10 + tmp8) 1.2e+05"];
+node136 -> node58 [label="tmp2 = (M279 M278) 1.94e+09"];
+node136 -> node104 [label="tmp12 = (M279^T tmp8) 2.16e+08"];
+
+node141 [shape=record, label="{ out = (tmp11 + (M278 M279^T tmp8)) |{ 141 | -1 | None | 1.98e+09 |  |  } }"];
+node141 -> node10 [label="tmp12 = (M279^T tmp8) 2.16e+08
+tmp9 = (M278 tmp12) 1.3e+09"];
+node141 -> node87 [label="tmp2 = (M279 M278) 1.94e+09"];
+node141 -> node144 [label="tmp12 = (M279^T tmp8) 2.16e+08"];
+
+node144 [shape=record, label="{ out = (tmp11 + (M278 tmp12)) |{ 144 | -1 | None | 2.2e+09 |  |  } }"];
+node144 -> node10 [label="tmp9 = (M278 tmp12) 1.3e+09"];
+node144 -> node2 [label="tmp7 = (tmp11 + (M278 tmp12)) 1.3e+09"];
+node144 -> node2 [label="tmp7 = (tmp11 + (M278 tmp12)) 1.3e+09"];
+node144 -> node10 [label="tmp9 = (M278 tmp12) 1.3e+09"];
+
+node149 [shape=record, label="{ out = ((tmp2^T tmp10) + (M278 M279^T tmp8)) |{ 149 | -1 | None | 2.41e+09 |  |  } }"];
+node149 -> node141 [label="tmp11 = (tmp2^T tmp10) 2.16e+08"];
+node149 -> node141 [label="tmp11 = (tmp2^T tmp10) 2.16e+08"];
+node149 -> node61 [label="tmp2 = (M279 M278) 1.94e+09"];
+node149 -> node153 [label="tmp12 = (M279^T tmp8) 2.16e+08"];
+
+node153 [shape=record, label="{ out = ((M278 tmp12) + (tmp2^T tmp10)) |{ 153 | -1 | None | 2.63e+09 |  | pruned } }"];
+
+node155 [shape=record, label="{ tmp14 = (M278 M279^T)\nout = ((tmp14 tmp8) + (tmp14 M280^T M282^T)) |{ 155 | -1 | None | 2.34e+08 |  |  } }"];
+node155 -> node156 [label="tmp2 = (M279 M278) 1.94e+09"];
+node155 -> node156 [label="tmp2 = (M279 M278) 1.94e+09"];
+
+node156 [shape=record, label="{ tmp14 = tmp2^T\nout = ((tmp14 tmp8) + (tmp14 M280^T M282^T)) |{ 156 | -1 | None | 2.18e+09 |  |  } }"];
+node156 -> node157 [label="tmp14 = tmp2^T 1"];
+
+node157 [shape=record, label="{ out = ((tmp14 tmp8) + (tmp14 M280^T M282^T)) |{ 157 | -1 | None | 2.18e+09 |  |  } }"];
+node157 -> node158 [label="tmp10 = (M280^T M282^T) 2.34e+08"];
+node157 -> node159 [label="tmp4 = (tmp8 + (M280^T M282^T)) 2.34e+08"];
+node157 -> node165 [label="tmp9 = (tmp14 tmp8) 2.16e+08"];
+node157 -> node165 [label="tmp9 = (tmp14 tmp8) 2.16e+08"];
+node157 -> node158 [label="tmp10 = (M280^T M282^T) 2.34e+08"];
+node157 -> node180 [label="tmp5 = (tmp14 M280^T) 2.11e+09"];
+node157 -> node158 [label="tmp10 = (M280^T M282^T) 2.34e+08"];
+
+node158 [shape=record, label="{ out = ((tmp14 tmp10) + (tmp14 tmp8)) |{ 158 | -1 | None | 2.41e+09 |  |  } }"];
+node158 -> node159 [label="tmp4 = (tmp10 + tmp8) 1.2e+05"];
+node158 -> node159 [label="tmp4 = (tmp10 + tmp8) 1.2e+05"];
+node158 -> node169 [label="tmp11 = (tmp14 tmp10) 2.16e+08"];
+node158 -> node169 [label="tmp11 = (tmp14 tmp10) 2.16e+08"];
+node158 -> node159 [label="tmp4 = (tmp10 + tmp8) 1.2e+05"];
+node158 -> node168 [label="tmp9 = (tmp14 tmp8) 2.16e+08"];
+
+node159 [shape=record, label="{ out = (tmp14 tmp4) |{ 159 | -1 | None | 2.41e+09 |  |  } }"];
+node159 -> node2 [label="tmp7 = (tmp14 tmp4) 2.16e+08"];
+node159 -> node2 [label="tmp7 = (tmp14 tmp4) 2.16e+08"];
+
+node165 [shape=record, label="{ out = (tmp9 + (tmp14 M280^T M282^T)) |{ 165 | -1 | None | 2.39e+09 |  |  } }"];
+node165 -> node10 [label="tmp10 = (M280^T M282^T) 2.34e+08
+tmp11 = (tmp14 tmp10) 2.16e+08"];
+node165 -> node11 [label="tmp5 = (tmp14 M280^T) 2.11e+09"];
+node165 -> node168 [label="tmp10 = (M280^T M282^T) 2.34e+08"];
+
+node168 [shape=record, label="{ out = (tmp9 + (tmp14 tmp10)) |{ 168 | -1 | None | 2.63e+09 |  | pruned } }"];
+
+node169 [shape=record, label="{ out = (tmp11 + (tmp14 tmp8)) |{ 169 | -1 | None | 2.63e+09 |  | pruned } }"];
+
+node174 [shape=record, label="{ tmp14 = (M278 M279^T)\nout = ((tmp14 tmp10) + (tmp14 tmp8)) |{ 174 | -1 | None | 4.68e+08 |  |  } }"];
+node174 -> node175 [label="tmp2 = (M279 M278) 1.94e+09"];
+node174 -> node175 [label="tmp2 = (M279 M278) 1.94e+09"];
+
+node175 [shape=record, label="{ tmp14 = tmp2^T\nout = ((tmp14 tmp10) + (tmp14 tmp8)) |{ 175 | -1 | None | 2.41e+09 |  |  } }"];
+node175 -> node158 [label="tmp14 = tmp2^T 1"];
+
+node180 [shape=record, label="{ out = ((tmp14 tmp8) + (tmp5 M282^T)) |{ 180 | -1 | None | 4.28e+09 |  | pruned } }"];
+
+node205 [shape=record, label="{ out = ((M278 tmp12) + (tmp2^T M280^T M282^T)) |{ 205 | -1 | None | 2.39e+09 |  |  } }"];
+node205 -> node9 [label="tmp9 = (M278 tmp12) 1.3e+09"];
+node205 -> node9 [label="tmp9 = (M278 tmp12) 1.3e+09"];
+node205 -> node208 [label="tmp5 = (tmp2^T M280^T) 2.11e+09"];
+node205 -> node153 [label="tmp10 = (M280^T M282^T) 2.34e+08"];
+
+node208 [shape=record, label="{ out = ((M278 tmp12) + (tmp5 M282^T)) |{ 208 | -1 | None | 4.5e+09 |  | pruned } }"];
+
+node215 [shape=record, label="{ out = ((M278 tmp13) + (M278 M279^T tmp8)) |{ 215 | -1 | None | 6.84e+08 |  |  } }"];
+node215 -> node109 [label="tmp12 = (M279^T tmp8) 2.16e+08"];
+node215 -> node27 [label="tmp6 = (tmp13 + (M279^T tmp8)) 2.16e+08"];
+node215 -> node141 [label="tmp11 = (M278 tmp13) 1.3e+09"];
+node215 -> node141 [label="tmp11 = (M278 tmp13) 1.3e+09"];
+node215 -> node109 [label="tmp12 = (M279^T tmp8) 2.16e+08"];
+node215 -> node62 [label="tmp2 = (M279 M278) 1.94e+09"];
+node215 -> node109 [label="tmp12 = (M279^T tmp8) 2.16e+08"];
+
+node226 [shape=record, label="{ out = ((M278 M279^T tmp8) + (tmp2^T M280^T M282^T)) |{ 226 | -1 | None | 2.18e+09 |  |  } }"];
+node226 -> node9 [label="tmp12 = (M279^T tmp8) 2.16e+08
+tmp9 = (M278 tmp12) 1.3e+09"];
+node226 -> node54 [label="tmp2 = (M279 M278) 1.94e+09"];
+node226 -> node205 [label="tmp12 = (M279^T tmp8) 2.16e+08"];
+node226 -> node230 [label="tmp5 = (tmp2^T M280^T) 2.11e+09"];
+node226 -> node149 [label="tmp10 = (M280^T M282^T) 2.34e+08"];
+
+node230 [shape=record, label="{ out = ((tmp5 M282^T) + (M278 M279^T tmp8)) |{ 230 | -1 | None | 4.28e+09 |  | pruned } }"];
+
+node236 [shape=record, label="{ out = ((M278 tmp3 M282^T) + (M278 M279^T tmp8)) |{ 236 | -1 | None | 2.34e+09 |  |  } }"];
+node236 -> node215 [label="tmp13 = (tmp3 M282^T) 1.4e+09"];
+node236 -> node215 [label="tmp13 = (tmp3 M282^T) 1.4e+09"];
+node236 -> node141 [label="tmp13 = (tmp3 M282^T) 1.4e+09
+tmp11 = (M278 tmp13) 1.3e+09"];
+node236 -> node230 [label="tmp5 = (M278 tmp3) 1.26e+10"];
+node236 -> node95 [label="tmp12 = (M279^T tmp8) 2.16e+08"];
+node236 -> node215 [label="tmp13 = (tmp3 M282^T) 1.4e+09"];
+node236 -> node55 [label="tmp2 = (M279 M278) 1.94e+09"];
+node236 -> node95 [label="tmp12 = (M279^T tmp8) 2.16e+08"];
+
+node245 [shape=record, label="{ out = ((tmp2^T M280^T M282^T) + (M278 M279^T M280^T M281)) |{ 245 | -1 | None | 1.94e+09 |  |  } }"];
+node245 -> node246 [label="tmp10 = (M280^T M282^T) 2.34e+08
+tmp11 = (tmp2^T tmp10) 2.16e+08"];
+node245 -> node249 [label="tmp5 = (tmp2^T M280^T) 2.11e+09"];
+node245 -> node250 [label="tmp10 = (M280^T M282^T) 2.34e+08"];
+node245 -> node6 [label="tmp2 = (M279 M278) 1.94e+09"];
+node245 -> node119 [label="tmp3 = (M279^T M280^T) 2.11e+09"];
+node245 -> node226 [label="tmp8 = (M280^T M281) 2.34e+08"];
+
+node246 [shape=record, label="{ out = (tmp11 + (M278 M279^T M280^T M281)) |{ 246 | -1 | None | 1.75e+09 |  |  } }"];
+node246 -> node10 [label="tmp8 = (M280^T M281) 2.34e+08
+tmp12 = (M279^T tmp8) 2.16e+08
+tmp9 = (M278 tmp12) 1.3e+09"];
+node246 -> node64 [label="tmp2 = (M279 M278) 1.94e+09"];
+node246 -> node111 [label="tmp3 = (M279^T M280^T) 2.11e+09"];
+node246 -> node141 [label="tmp8 = (M280^T M281) 2.34e+08"];
+
+node249 [shape=record, label="{ out = ((tmp5 M282^T) + (M278 M279^T M280^T M281)) |{ 249 | -1 | None | 4.05e+09 |  | pruned } }"];
+
+node250 [shape=record, label="{ out = ((tmp2^T tmp10) + (M278 M279^T M280^T M281)) |{ 250 | -1 | None | 2.18e+09 |  |  } }"];
+node250 -> node246 [label="tmp11 = (tmp2^T tmp10) 2.16e+08"];
+node250 -> node246 [label="tmp11 = (tmp2^T tmp10) 2.16e+08"];
+node250 -> node65 [label="tmp2 = (M279 M278) 1.94e+09"];
+node250 -> node116 [label="tmp3 = (M279^T M280^T) 2.11e+09"];
+node250 -> node149 [label="tmp8 = (M280^T M281) 2.34e+08"];
+
+node261 [shape=record, label="{ out = ((M278 tmp3 M282^T) + (M278 M279^T M280^T M281)) |{ 261 | -1 | None | 2.11e+09 |  |  } }"];
+node261 -> node262 [label="tmp13 = (tmp3 M282^T) 1.4e+09"];
+node261 -> node262 [label="tmp13 = (tmp3 M282^T) 1.4e+09"];
+node261 -> node246 [label="tmp13 = (tmp3 M282^T) 1.4e+09
+tmp11 = (M278 tmp13) 1.3e+09"];
+node261 -> node249 [label="tmp5 = (M278 tmp3) 1.26e+10"];
+node261 -> node73 [label="tmp3 = (M279^T M280^T) 2.11e+09"];
+node261 -> node262 [label="tmp13 = (tmp3 M282^T) 1.4e+09"];
+node261 -> node236 [label="tmp8 = (M280^T M281) 2.34e+08"];
+node261 -> node57 [label="tmp2 = (M279 M278) 1.94e+09"];
+node261 -> node73 [label="tmp3 = (M279^T M280^T) 2.11e+09"];
+node261 -> node236 [label="tmp8 = (M280^T M281) 2.34e+08"];
+
+node262 [shape=record, label="{ out = ((M278 tmp13) + (M278 M279^T M280^T M281)) |{ 262 | -1 | None | 4.5e+08 |  |  } }"];
+node262 -> node109 [label="tmp8 = (M280^T M281) 2.34e+08
+tmp12 = (M279^T tmp8) 2.16e+08"];
+node262 -> node108 [label="tmp3 = (M279^T M280^T) 2.11e+09"];
+node262 -> node246 [label="tmp11 = (M278 tmp13) 1.3e+09"];
+node262 -> node246 [label="tmp11 = (M278 tmp13) 1.3e+09"];
+node262 -> node215 [label="tmp8 = (M280^T M281) 2.34e+08"];
+node262 -> node66 [label="tmp2 = (M279 M278) 1.94e+09"];
+node262 -> node108 [label="tmp3 = (M279^T M280^T) 2.11e+09"];
+node262 -> node215 [label="tmp8 = (M280^T M281) 2.34e+08"];
+
+node273 [shape=record, label="{ out = ((M278 M279^T tmp10) + (M278 M279^T M280^T M281)) |{ 273 | -1 | None | 2.34e+08 |  |  } }"];
+node273 -> node136 [label="tmp8 = (M280^T M281) 2.34e+08"];
+node273 -> node65 [label="tmp2 = (M279 M278) 1.94e+09"];
+node273 -> node246 [label="tmp13 = (M279^T tmp10) 2.16e+08
+tmp11 = (M278 tmp13) 1.3e+09"];
+node273 -> node250 [label="tmp2 = (M279 M278) 1.94e+09"];
+node273 -> node278 [label=""];
+node273 -> node28 [label="tmp4 = (tmp10 + (M280^T M281)) 2.34e+08"];
+node273 -> node262 [label="tmp13 = (M279^T tmp10) 2.16e+08"];
+node273 -> node136 [label="tmp8 = (M280^T M281) 2.34e+08"];
+node273 -> node63 [label="tmp2 = (M279 M278) 1.94e+09"];
+node273 -> node103 [label="tmp3 = (M279^T M280^T) 2.11e+09"];
+node273 -> node136 [label="tmp8 = (M280^T M281) 2.34e+08"];
+
+node278 [shape=record, label="{ tmp14 = (M278 M279^T)\nout = ((tmp14 tmp10) + (tmp14 M280^T M281)) |{ 278 | -1 | None | 2.34e+08 |  |  } }"];
+node278 -> node279 [label="tmp2 = (M279 M278) 1.94e+09"];
+node278 -> node279 [label="tmp2 = (M279 M278) 1.94e+09"];
+
+node279 [shape=record, label="{ tmp14 = tmp2^T\nout = ((tmp14 tmp10) + (tmp14 M280^T M281)) |{ 279 | -1 | None | 2.18e+09 |  |  } }"];
+node279 -> node280 [label="tmp14 = tmp2^T 1"];
+
+node280 [shape=record, label="{ out = ((tmp14 tmp10) + (tmp14 M280^T M281)) |{ 280 | -1 | None | 2.18e+09 |  |  } }"];
+node280 -> node158 [label="tmp8 = (M280^T M281) 2.34e+08"];
+node280 -> node159 [label="tmp4 = (tmp10 + (M280^T M281)) 2.34e+08"];
+node280 -> node284 [label="tmp11 = (tmp14 tmp10) 2.16e+08"];
+node280 -> node284 [label="tmp11 = (tmp14 tmp10) 2.16e+08"];
+node280 -> node158 [label="tmp8 = (M280^T M281) 2.34e+08"];
+node280 -> node290 [label="tmp5 = (tmp14 M280^T) 2.11e+09"];
+node280 -> node158 [label="tmp8 = (M280^T M281) 2.34e+08"];
+
+node284 [shape=record, label="{ out = (tmp11 + (tmp14 M280^T M281)) |{ 284 | -1 | None | 2.39e+09 |  |  } }"];
+node284 -> node10 [label="tmp8 = (M280^T M281) 2.34e+08
+tmp9 = (tmp14 tmp8) 2.16e+08"];
+node284 -> node128 [label="tmp5 = (tmp14 M280^T) 2.11e+09"];
+node284 -> node169 [label="tmp8 = (M280^T M281) 2.34e+08"];
+
+node290 [shape=record, label="{ out = ((tmp14 tmp10) + (tmp5 M281)) |{ 290 | -1 | None | 4.28e+09 |  | pruned } }"];
+
+}

@@ -1,0 +1,180 @@
+digraph G {
+ranksep=2.5;
+rankdir=TB;
+node0 [shape=record, label="{ out = ((M105^-1 M106^T) + (M107^-1 M108^T) + M104^T) |{ 0 | None | None | 0 |  |  } }"];
+node0 -> node5 [style=bold, label="tmp7 = (M106 M105^-T) 1.02e+09"];
+node0 -> node5 [style=bold, label="tmp7 = (M106 M105^-T) 1.02e+09"];
+node0 -> node40 [label="(L1 L1^T) = M107 1.37e+09"];
+node0 -> node84 [label="(Q2 R3) = M107 1.09e+10"];
+node0 -> node85 [label="(Z4 W5 Z4^T) = M107 1.37e+10"];
+
+node5 [shape=record, label="{ out = ((M107^-1 M108^T) + M104^T + tmp7^T) |{ 5 | -1 | None | 1.02e+09 |  |  } }"];
+node5 -> node6 [style=bold, label="tmp8 = (M104 + tmp7) 1.28e+06"];
+node5 -> node32 [label="(L1 L1^T) = M107 1.37e+09"];
+node5 -> node6 [style=bold, label="tmp8 = (M104 + tmp7) 1.28e+06"];
+node5 -> node76 [label="(Q2 R3) = M107 1.09e+10"];
+node5 -> node87 [label="(Z4 W5 Z4^T) = M107 1.37e+10"];
+
+node6 [shape=record, label="{ out = ((M107^-1 M108^T) + tmp8^T) |{ 6 | -1 | None | 1.03e+09 |  |  } }"];
+node6 -> node7 [style=bold, label="tmp10 = M108^T 1"];
+node6 -> node24 [label="(L1 L1^T) = M107 1.37e+09"];
+node6 -> node60 [style=bold, label="tmp11 = tmp8^T 1"];
+node6 -> node75 [label="(Q2 R3) = M107 1.09e+10"];
+node6 -> node88 [label="(Z4 W5 Z4^T) = M107 1.37e+10"];
+
+node7 [shape=record, label="{ out = ((M107^-1 tmp10) + tmp8^T) |{ 7 | -1 | None | 1.03e+09 |  |  } }"];
+node7 -> node8 [label="tmp11 = tmp8^T 1"];
+node7 -> node17 [style=bold, label="(L1 L1^T) = M107 1.37e+09"];
+node7 -> node70 [label="(Q2 R3) = M107 1.09e+10"];
+node7 -> node73 [label="(Z4 W5 Z4^T) = M107 1.37e+10"];
+
+node8 [shape=record, label="{ out = (tmp11 + (M107^-1 tmp10)) |{ 8 | -1 | None | 1.03e+09 |  |  } }"];
+node8 -> node9 [label="(L1 L1^T) = M107 1.37e+09"];
+node8 -> node16 [label="(Q2 R3) = M107 1.09e+10"];
+node8 -> node71 [label="(Z4 W5 Z4^T) = M107 1.37e+10"];
+
+node9 [shape=record, label="{ out = (tmp11 + (L1^-T L1^-1 tmp10)) |{ 9 | -1 | None | 2.39e+09 | M107 |  } }"];
+node9 -> node10 [label="tmp12 = (L1^-1 tmp10) 1.02e+09
+tmp6 = (L1^-T tmp12) 1.02e+09"];
+node9 -> node13 [label="tmp12 = (L1^-1 tmp10) 1.02e+09"];
+
+node10 [shape=record, label="{ out = (tmp11 + tmp6) |{ 10 | -1 | None | 4.44e+09 |  |  } }"];
+node10 -> node11 [label="tmp9 = (tmp11 + tmp6) 1.28e+06"];
+node10 -> node11 [label="tmp9 = (tmp11 + tmp6) 1.28e+06"];
+node10 -> node11 [label="tmp9 = (tmp11 + tmp6) 1.28e+06"];
+
+node11 [shape=record, label="{ out = tmp9 |{ 11 | -1 | None | 4.44e+09 |  |  } }"];
+
+node13 [shape=record, label="{ out = (tmp11 + (L1^-T tmp12)) |{ 13 | -1 | None | 3.41e+09 |  |  } }"];
+node13 -> node10 [label="tmp6 = (L1^-T tmp12) 1.02e+09"];
+node13 -> node10 [label="tmp6 = (L1^-T tmp12) 1.02e+09"];
+
+node16 [shape=record, label="{ out = (tmp11 + (R3^-1 Q2^T tmp10)) |{ 16 | -1 | None | 1.19e+10 | M107 | pruned } }"];
+
+node17 [shape=record, label="{ out = ((L1^-T L1^-1 tmp10) + tmp8^T) |{ 17 | -1 | None | 2.39e+09 | M107 |  } }"];
+node17 -> node18 [style=bold, label="tmp12 = (L1^-1 tmp10) 1.02e+09
+tmp6 = (L1^-T tmp12) 1.02e+09"];
+node17 -> node21 [style=bold, label="tmp12 = (L1^-1 tmp10) 1.02e+09"];
+
+node18 [shape=record, label="{ out = (tmp6 + tmp8^T) |{ 18 | -1 | None | 4.44e+09 |  |  } }"];
+node18 -> node11 [style=bold, label="tmp9 = (tmp6 + tmp8^T) 6.4e+05"];
+node18 -> node11 [style=bold, label="tmp9 = (tmp6 + tmp8^T) 6.4e+05"];
+
+node21 [shape=record, label="{ out = ((L1^-T tmp12) + tmp8^T) |{ 21 | -1 | None | 3.41e+09 |  |  } }"];
+node21 -> node18 [style=bold, label="tmp6 = (L1^-T tmp12) 1.02e+09"];
+node21 -> node18 [style=bold, label="tmp6 = (L1^-T tmp12) 1.02e+09"];
+
+node24 [shape=record, label="{ out = ((L1^-T L1^-1 M108^T) + tmp8^T) |{ 24 | -1 | None | 2.39e+09 | M107 |  } }"];
+node24 -> node25 [label="tmp13 = (M108 L1^-T) 1.02e+09
+tmp14 = (tmp13 L1^-1) 1.02e+09"];
+node24 -> node29 [label="tmp13 = (M108 L1^-T) 1.02e+09"];
+
+node25 [shape=record, label="{ out = (tmp14^T + tmp8^T) |{ 25 | -1 | None | 4.44e+09 |  |  } }"];
+node25 -> node26 [label="tmp15 = (tmp14 + tmp8) 1.28e+06"];
+node25 -> node26 [label="tmp15 = (tmp14 + tmp8) 1.28e+06"];
+node25 -> node26 [label="tmp15 = (tmp14 + tmp8) 1.28e+06"];
+
+node26 [shape=record, label="{ out = tmp15^T |{ 26 | -1 | None | 4.44e+09 |  |  } }"];
+node26 -> node27 [label="tmp16 = tmp15^T 1"];
+
+node27 [shape=record, label="{ out = tmp16 |{ 27 | -1 | None | 4.44e+09 |  |  } }"];
+
+node29 [shape=record, label="{ out = ((L1^-T tmp13^T) + tmp8^T) |{ 29 | -1 | None | 3.41e+09 |  |  } }"];
+node29 -> node25 [label="tmp14 = (tmp13 L1^-1) 1.02e+09"];
+node29 -> node25 [label="tmp14 = (tmp13 L1^-1) 1.02e+09"];
+
+node32 [shape=record, label="{ out = ((L1^-T L1^-1 M108^T) + M104^T + tmp7^T) |{ 32 | -1 | None | 2.39e+09 | M107 |  } }"];
+node32 -> node33 [label="tmp13 = (M108 L1^-T) 1.02e+09
+tmp14 = (tmp13 L1^-1) 1.02e+09"];
+node32 -> node24 [label="tmp8 = (M104 + tmp7) 1.28e+06"];
+node32 -> node24 [label="tmp8 = (M104 + tmp7) 1.28e+06"];
+node32 -> node44 [label="tmp13 = (M108 L1^-T) 1.02e+09"];
+
+node33 [shape=record, label="{ out = (M104^T + tmp14^T + tmp7^T) |{ 33 | -1 | None | 4.44e+09 |  |  } }"];
+node33 -> node26 [label="tmp17 = (tmp14 + tmp7) 1.28e+06
+tmp15 = (M104 + tmp17) 1.28e+06"];
+node33 -> node35 [label="tmp18 = (M104 + tmp14) 1.28e+06"];
+node33 -> node35 [label="tmp18 = (M104 + tmp14) 1.28e+06"];
+node33 -> node77 [label="tmp17 = (tmp14 + tmp7) 1.28e+06"];
+node33 -> node25 [label="tmp8 = (M104 + tmp7) 1.28e+06"];
+node33 -> node77 [label="tmp17 = (tmp14 + tmp7) 1.28e+06"];
+node33 -> node25 [label="tmp8 = (M104 + tmp7) 1.28e+06"];
+
+node35 [shape=record, label="{ out = (tmp18^T + tmp7^T) |{ 35 | -1 | None | 4.44e+09 |  |  } }"];
+node35 -> node26 [label="tmp15 = (tmp18 + tmp7) 1.28e+06"];
+node35 -> node26 [label="tmp15 = (tmp18 + tmp7) 1.28e+06"];
+node35 -> node26 [label="tmp15 = (tmp18 + tmp7) 1.28e+06"];
+
+node40 [shape=record, label="{ out = ((M105^-1 M106^T) + (L1^-T L1^-1 M108^T) + M104^T) |{ 40 | -1 | None | 1.37e+09 | M107 |  } }"];
+node40 -> node32 [label="tmp7 = (M106 M105^-T) 1.02e+09"];
+node40 -> node32 [label="tmp7 = (M106 M105^-T) 1.02e+09"];
+node40 -> node43 [label="tmp13 = (M108 L1^-T) 1.02e+09"];
+
+node43 [shape=record, label="{ out = ((M105^-1 M106^T) + (L1^-T tmp13^T) + M104^T) |{ 43 | -1 | None | 2.39e+09 |  |  } }"];
+node43 -> node44 [label="tmp7 = (M106 M105^-T) 1.02e+09"];
+node43 -> node44 [label="tmp7 = (M106 M105^-T) 1.02e+09"];
+node43 -> node48 [label="tmp14 = (tmp13 L1^-1) 1.02e+09"];
+
+node44 [shape=record, label="{ out = ((L1^-T tmp13^T) + M104^T + tmp7^T) |{ 44 | -1 | None | 3.41e+09 |  |  } }"];
+node44 -> node33 [label="tmp14 = (tmp13 L1^-1) 1.02e+09"];
+node44 -> node29 [label="tmp8 = (M104 + tmp7) 1.28e+06"];
+node44 -> node29 [label="tmp8 = (M104 + tmp7) 1.28e+06"];
+node44 -> node33 [label="tmp14 = (tmp13 L1^-1) 1.02e+09"];
+
+node48 [shape=record, label="{ out = ((M105^-1 M106^T) + M104^T + tmp14^T) |{ 48 | -1 | None | 3.41e+09 |  |  } }"];
+node48 -> node33 [label="tmp7 = (M106 M105^-T) 1.02e+09"];
+node48 -> node50 [label="tmp18 = (M104 + tmp14) 1.28e+06"];
+node48 -> node50 [label="tmp18 = (M104 + tmp14) 1.28e+06"];
+node48 -> node33 [label="tmp7 = (M106 M105^-T) 1.02e+09"];
+
+node50 [shape=record, label="{ out = ((M105^-1 M106^T) + tmp18^T) |{ 50 | -1 | None | 3.41e+09 |  |  } }"];
+node50 -> node35 [label="tmp7 = (M106 M105^-T) 1.02e+09"];
+node50 -> node35 [label="tmp7 = (M106 M105^-T) 1.02e+09"];
+
+node60 [shape=record, label="{ out = (tmp11 + (M107^-1 M108^T)) |{ 60 | -1 | None | 1.03e+09 |  |  } }"];
+node60 -> node8 [label="tmp10 = M108^T 1"];
+node60 -> node62 [style=bold, label="(L1 L1^T) = M107 1.37e+09"];
+node60 -> node69 [label="(Q2 R3) = M107 1.09e+10"];
+node60 -> node74 [label="(Z4 W5 Z4^T) = M107 1.37e+10"];
+
+node62 [shape=record, label="{ out = (tmp11 + (L1^-T L1^-1 M108^T)) |{ 62 | -1 | None | 2.39e+09 | M107 |  } }"];
+node62 -> node63 [style=bold, label="tmp13 = (M108 L1^-T) 1.02e+09
+tmp14 = (tmp13 L1^-1) 1.02e+09"];
+node62 -> node66 [style=bold, label="tmp13 = (M108 L1^-T) 1.02e+09"];
+
+node63 [shape=record, label="{ out = (tmp11 + tmp14^T) |{ 63 | -1 | None | 4.44e+09 |  |  } }"];
+node63 -> node27 [style=bold, label="tmp16 = (tmp11 + tmp14^T) 6.4e+05"];
+node63 -> node27 [style=bold, label="tmp16 = (tmp11 + tmp14^T) 6.4e+05"];
+
+node66 [shape=record, label="{ out = (tmp11 + (L1^-T tmp13^T)) |{ 66 | -1 | None | 3.41e+09 |  |  } }"];
+node66 -> node63 [style=bold, label="tmp14 = (tmp13 L1^-1) 1.02e+09"];
+node66 -> node63 [style=bold, label="tmp14 = (tmp13 L1^-1) 1.02e+09"];
+
+node69 [shape=record, label="{ out = (tmp11 + (R3^-1 Q2^T M108^T)) |{ 69 | -1 | None | 1.19e+10 | M107 | pruned } }"];
+
+node70 [shape=record, label="{ out = ((R3^-1 Q2^T tmp10) + tmp8^T) |{ 70 | -1 | None | 1.19e+10 | M107 | pruned } }"];
+
+node71 [shape=record, label="{ out = (tmp11 + (Z4 W5^-1 Z4^T tmp10)) |{ 71 | -1 | None | 1.47e+10 | M107 | pruned } }"];
+
+node73 [shape=record, label="{ out = ((Z4 W5^-1 Z4^T tmp10) + tmp8^T) |{ 73 | -1 | None | 1.47e+10 | M107 | pruned } }"];
+
+node74 [shape=record, label="{ out = (tmp11 + (Z4 W5^-1 Z4^T M108^T)) |{ 74 | -1 | None | 1.47e+10 | M107 | pruned } }"];
+
+node75 [shape=record, label="{ out = ((R3^-1 Q2^T M108^T) + tmp8^T) |{ 75 | -1 | None | 1.19e+10 | M107 | pruned } }"];
+
+node76 [shape=record, label="{ out = ((R3^-1 Q2^T M108^T) + M104^T + tmp7^T) |{ 76 | -1 | None | 1.19e+10 | M107 | pruned } }"];
+
+node77 [shape=record, label="{ out = (M104^T + tmp17^T) |{ 77 | -1 | None | 4.44e+09 |  |  } }"];
+node77 -> node26 [label="tmp15 = (M104 + tmp17) 1.28e+06"];
+node77 -> node26 [label="tmp15 = (M104 + tmp17) 1.28e+06"];
+node77 -> node26 [label="tmp15 = (M104 + tmp17) 1.28e+06"];
+
+node84 [shape=record, label="{ out = ((M105^-1 M106^T) + (R3^-1 Q2^T M108^T) + M104^T) |{ 84 | -1 | None | 1.09e+10 | M107 | pruned } }"];
+
+node85 [shape=record, label="{ out = ((M105^-1 M106^T) + (Z4 W5^-1 Z4^T M108^T) + M104^T) |{ 85 | -1 | None | 1.37e+10 | M107 | pruned } }"];
+
+node87 [shape=record, label="{ out = ((Z4 W5^-1 Z4^T M108^T) + M104^T + tmp7^T) |{ 87 | -1 | None | 1.47e+10 | M107 | pruned } }"];
+
+node88 [shape=record, label="{ out = ((Z4 W5^-1 Z4^T M108^T) + tmp8^T) |{ 88 | -1 | None | 1.47e+10 | M107 | pruned } }"];
+
+}

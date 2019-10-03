@@ -1,0 +1,23 @@
+# cost 1.04e+07
+
+out = (s144 M141^-1 M142 v143 v145^T M146 M147^T)
+
+tmp6 = (M146^T v145)          # 1e+04
+
+out = (s144 M141^-1 M142 v143 tmp6^T M147^T)
+
+tmp12 = (M147 tmp6)           # 5e+04
+
+out = (s144 M141^-1 M142 v143 tmp12^T)
+
+tmp4 = (M142 v143)            # 5.78e+06
+
+out = (s144 M141^-1 tmp4 tmp12^T)
+
+tmp9 = (M141^-1 tmp4)         # 2.89e+06
+
+tmp13 = (s144 tmp9)           # 1.7e+03
+
+tmp22 = (tmp13 tmp12^T)       # 1.7e+06
+
+out = tmp22

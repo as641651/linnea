@@ -1,0 +1,53 @@
+digraph G {
+ranksep=2.5;
+rankdir=TB;
+node0 [shape=record, label="{ out = (M99 + (M96^-T M95^-1 M97 M98)) |{ 0 | None | None | 0 |  |  } }"];
+node0 -> node2 [style=bold, label="tmp7 = (M97 M98) 5e+06
+tmp9 = (M95^-1 tmp7) 1e+06
+tmp10 = (M96^-T tmp9) 1e+06"];
+node0 -> node5 [label="tmp6 = (M95^-1 M97) 2.5e+06"];
+node0 -> node14 [style=bold, label="tmp12 = (M95 M96^T) 1e+06"];
+node0 -> node21 [style=bold, label="tmp7 = (M97 M98) 5e+06"];
+node0 -> node21 [style=bold, label="tmp7 = (M97 M98) 5e+06"];
+node0 -> node14 [style=bold, label="tmp12 = (M95 M96^T) 1e+06"];
+
+node2 [shape=record, label="{ out = (M99 + tmp10) |{ 2 | -1 | None | 7e+06 |  |  } }"];
+node2 -> node3 [style=bold, label="tmp11 = (M99 + tmp10) 2e+04"];
+node2 -> node3 [style=bold, label="tmp11 = (M99 + tmp10) 2e+04"];
+node2 -> node3 [style=bold, label="tmp11 = (M99 + tmp10) 2e+04"];
+
+node3 [shape=record, label="{ out = tmp11 |{ 3 | -1 | None | 7.02e+06 |  |  } }"];
+
+node5 [shape=record, label="{ out = (M99 + (M96^-T tmp6 M98)) |{ 5 | -1 | None | 2.5e+06 |  |  } }"];
+node5 -> node2 [label="tmp9 = (tmp6 M98) 5e+06
+tmp10 = (M96^-T tmp9) 1e+06"];
+node5 -> node7 [label="tmp8 = (M96^-T tmp6) 2.5e+06"];
+node5 -> node11 [label="tmp9 = (tmp6 M98) 5e+06"];
+
+node7 [shape=record, label="{ out = (M99 + (tmp8 M98)) |{ 7 | -1 | None | 3.5e+06 |  |  } }"];
+node7 -> node2 [label="tmp10 = (tmp8 M98) 5e+06"];
+node7 -> node3 [label="tmp11 = (M99 + (tmp8 M98)) 5e+06"];
+node7 -> node2 [label="tmp10 = (tmp8 M98) 5e+06"];
+
+node11 [shape=record, label="{ out = (M99 + (M96^-T tmp9)) |{ 11 | -1 | None | 6e+06 |  |  } }"];
+node11 -> node2 [style=bold, label="tmp10 = (M96^-T tmp9) 1e+06"];
+node11 -> node2 [style=bold, label="tmp10 = (M96^-T tmp9) 1e+06"];
+
+node14 [shape=record, label="{ out = (M99 + (tmp12^-1 M97 M98)) |{ 14 | -1 | None | 1e+06 |  |  } }"];
+node14 -> node2 [style=bold, label="tmp7 = (M97 M98) 5e+06
+tmp10 = (tmp12^-1 tmp7) 1e+06"];
+node14 -> node7 [label="tmp8 = (tmp12^-1 M97) 2.5e+06"];
+node14 -> node17 [style=bold, label="tmp7 = (M97 M98) 5e+06"];
+
+node17 [shape=record, label="{ out = (M99 + (tmp12^-1 tmp7)) |{ 17 | -1 | None | 6e+06 |  |  } }"];
+node17 -> node2 [style=bold, label="tmp10 = (tmp12^-1 tmp7) 1e+06"];
+node17 -> node2 [style=bold, label="tmp10 = (tmp12^-1 tmp7) 1e+06"];
+
+node21 [shape=record, label="{ out = (M99 + (M96^-T M95^-1 tmp7)) |{ 21 | -1 | None | 5e+06 |  |  } }"];
+node21 -> node2 [style=bold, label="tmp9 = (M95^-1 tmp7) 1e+06
+tmp10 = (M96^-T tmp9) 1e+06"];
+node21 -> node11 [style=bold, label="tmp9 = (M95^-1 tmp7) 1e+06"];
+node21 -> node17 [style=bold, label="tmp12 = (M95 M96^T) 1e+06"];
+node21 -> node17 [style=bold, label="tmp12 = (M95 M96^T) 1e+06"];
+
+}

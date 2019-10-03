@@ -1,0 +1,29 @@
+# cost 4.44e+09
+
+out = ((M105^-1 M106^T) + (M107^-1 M108^T) + M104^T)
+
+tmp7 = (M106 M105^-T)         # 1.02e+09
+
+out = ((M107^-1 M108^T) + M104^T + tmp7^T)
+
+tmp8 = (M104 + tmp7)          # 1.28e+06
+
+out = ((M107^-1 M108^T) + tmp8^T)
+
+tmp11 = tmp8^T                # 1
+
+out = (tmp11 + (M107^-1 M108^T))
+
+(L1 L1^T) = M107              # 1.37e+09
+
+out = (tmp11 + (L1^-T L1^-1 M108^T))
+
+tmp13 = (M108 L1^-T)          # 1.02e+09
+
+tmp14 = (tmp13 L1^-1)         # 1.02e+09
+
+out = (tmp11 + tmp14^T)
+
+tmp16 = (tmp11 + tmp14^T)     # 6.4e+05
+
+out = tmp16

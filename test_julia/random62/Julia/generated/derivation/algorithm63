@@ -1,0 +1,27 @@
+# cost 3.92e+10
+
+out = ((M343 M344 M345)^-1 M342)
+
+tmp17 = (M343 M344)           # 9.26e+09
+
+out = ((tmp17 M345)^-1 M342)
+
+tmp19 = (tmp17 M345)          # 8.98e+09
+
+out = (tmp19^-1 M342)
+
+(Q23 R24) = tmp19             # 1.2e+10
+
+out = (R24^-1 Q23^T M342)
+
+tmp31 = (M342^T Q23)          # 4.49e+09
+
+out = (R24^-1 tmp31^T)
+
+tmp32 = (tmp31 R24^-T)        # 4.49e+09
+
+out = tmp32^T
+
+tmp15 = tmp32^T               # 1
+
+out = tmp15

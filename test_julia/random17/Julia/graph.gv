@@ -1,0 +1,35 @@
+digraph G {
+ranksep=2.5;
+rankdir=TB;
+node0 [shape=record, label="{ out = (M90 + (M92 M91 M93 M94^T)) |{ 0 | None | None | 0 |  |  } }"];
+node0 -> node1 [style=bold, label="tmp3 = (M94 M93) 1e+08
+tmp5 = (tmp3 M91) 1e+08
+tmp6 = (tmp5 M92^T) 5e+07"];
+node0 -> node4 [label="tmp1 = (M92 M91) 1e+09"];
+node0 -> node5 [label="tmp2 = (M91 M93) 2e+09"];
+node0 -> node6 [style=bold, label="tmp3 = (M94 M93) 1e+08"];
+
+node1 [shape=record, label="{ out = (M90 + tmp6^T) |{ 1 | -1 | None | 2.5e+08 |  |  } }"];
+node1 -> node2 [style=bold, label="tmp7 = (M90 + tmp6^T) 5e+04"];
+node1 -> node2 [style=bold, label="tmp7 = (M90 + tmp6^T) 5e+04"];
+
+node2 [shape=record, label="{ out = tmp7 |{ 2 | -1 | None | 2.5e+08 |  |  } }"];
+
+node4 [shape=record, label="{ out = (M90 + (tmp1 M93 M94^T)) |{ 4 | -1 | None | 1e+09 |  | pruned } }"];
+
+node5 [shape=record, label="{ out = (M90 + (M92 tmp2 M94^T)) |{ 5 | -1 | None | 2e+09 |  | pruned } }"];
+
+node6 [shape=record, label="{ out = (M90 + (M92 M91 tmp3^T)) |{ 6 | -1 | None | 1e+08 |  |  } }"];
+node6 -> node1 [style=bold, label="tmp5 = (tmp3 M91) 1e+08
+tmp6 = (tmp5 M92^T) 5e+07"];
+node6 -> node8 [label="tmp1 = (M92 M91) 1e+09"];
+node6 -> node9 [style=bold, label="tmp5 = (tmp3 M91) 1e+08"];
+
+node8 [shape=record, label="{ out = (M90 + (tmp1 tmp3^T)) |{ 8 | -1 | None | 1.1e+09 |  | pruned } }"];
+
+node9 [shape=record, label="{ out = (M90 + (M92 tmp5^T)) |{ 9 | -1 | None | 2e+08 |  |  } }"];
+node9 -> node1 [style=bold, label="tmp6 = (tmp5 M92^T) 5e+07"];
+node9 -> node2 [label="tmp7 = (M90 + (M92 tmp5^T)) 1e+08"];
+node9 -> node1 [style=bold, label="tmp6 = (tmp5 M92^T) 5e+07"];
+
+}

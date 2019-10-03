@@ -1,0 +1,23 @@
+# cost 1.98e+09
+
+out = ((M278 M279^T M280^T M281) + (M278 M279^T M280^T M282^T))
+
+tmp8 = (M280^T M281)          # 2.34e+08
+
+out = ((M278 M279^T tmp8) + (M278 M279^T M280^T M282^T))
+
+tmp10 = (M280^T M282^T)       # 2.34e+08
+
+out = (M278 M279^T (tmp10 + tmp8))
+
+tmp4 = (tmp10 + tmp8)         # 1.2e+05
+
+out = (M278 M279^T tmp4)
+
+tmp6 = (M279^T tmp4)          # 2.16e+08
+
+out = (M278 tmp6)
+
+tmp7 = (M278 tmp6)            # 1.3e+09
+
+out = tmp7

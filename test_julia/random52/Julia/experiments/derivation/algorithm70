@@ -1,0 +1,23 @@
+# cost 6.06e+07
+
+out = ((M288 M289) + (M292^T M293) + M290^T + M291^T + M294^T)
+
+tmp1 = (M288 M289)            # 1.5e+05
+
+out = (tmp1 + (M292^T M293) + M290^T + M291^T + M294^T)
+
+tmp4 = (tmp1 + M294^T)        # 1.5e+05
+
+out = (tmp4 + (M292^T M293) + M290^T + M291^T)
+
+tmp5 = (tmp4 + M291^T)        # 1.5e+05
+
+out = (tmp5 + (M292^T M293) + M290^T)
+
+tmp15 = (tmp5 + M290^T)       # 1.5e+05
+
+out = (tmp15 + (M292^T M293))
+
+tmp6 = (tmp15 + (M292^T M293))# 6e+07
+
+out = tmp6

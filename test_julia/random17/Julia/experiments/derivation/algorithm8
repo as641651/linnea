@@ -1,0 +1,15 @@
+# cost 3e+08
+
+out = (M90 + (M92 M91 M93 M94^T))
+
+tmp3 = (M94 M93)              # 1e+08
+
+out = (M90 + (M92 M91 tmp3^T))
+
+tmp5 = (tmp3 M91)             # 1e+08
+
+out = (M90 + (M92 tmp5^T))
+
+tmp7 = (M90 + (M92 tmp5^T))   # 1e+08
+
+out = tmp7

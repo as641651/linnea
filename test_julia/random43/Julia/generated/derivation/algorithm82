@@ -1,0 +1,27 @@
+# cost 1.55e+08
+
+out = (M237 M238^-1 M239 M240^T M241^-1 M242 M243)
+
+tmp4 = (M241^-T M240)         # 9e+06
+
+out = (M237 M238^-1 M239 tmp4^T M242 M243)
+
+tmp10 = (tmp4^T M242)         # 6e+06
+
+out = (M237 M238^-1 M239 tmp10 M243)
+
+tmp2 = (M238^-1 M239)         # 6.4e+07
+
+out = (M237 tmp2 tmp10 M243)
+
+tmp17 = (tmp2 tmp10)          # 1.6e+07
+
+out = (M237 tmp17 M243)
+
+tmp19 = (M237 tmp17)          # 8e+06
+
+out = (tmp19 M243)
+
+tmp21 = (tmp19 M243)          # 5.2e+07
+
+out = tmp21

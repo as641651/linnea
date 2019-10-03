@@ -1,0 +1,19 @@
+# cost 8.52e+06
+
+out = (M99 + ((M95 M96^T)^-1 M97 M98))
+
+tmp12 = (M95 M96^T)           # 1e+06
+
+out = (M99 + (tmp12^-1 M97 M98))
+
+tmp8 = (tmp12^-1 M97)         # 2.5e+06
+
+out = (M99 + (tmp8 M98))
+
+tmp10 = (tmp8 M98)            # 5e+06
+
+out = (M99 + tmp10)
+
+tmp11 = (M99 + tmp10)         # 2e+04
+
+out = tmp11

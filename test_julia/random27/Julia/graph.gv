@@ -1,0 +1,295 @@
+digraph G {
+ranksep=2.5;
+rankdir=TB;
+node0 [shape=record, label="{ out = (s144 M141^-1 M142 v143 v145^T M146 M147^T) |{ 0 | None | None | 0 |  |  } }"];
+node0 -> node1 [label="tmp4 = (M142 v143) 5.78e+06
+tmp9 = (M141^-1 tmp4) 2.89e+06
+tmp13 = (s144 tmp9) 1.7e+03
+tmp6 = (M146^T v145) 1e+04
+tmp12 = (M147 tmp6) 5e+04
+tmp22 = (tmp13 tmp12^T) 1.7e+06"];
+node0 -> node2 [label="tmp8 = (s144 M141^-1 M142) 4.91e+09"];
+node0 -> node3 [label="tmp3 = (M141^-1 M142) 4.91e+09"];
+node0 -> node4 [style=bold, label="tmp4 = (M142 v143) 5.78e+06"];
+node0 -> node90 [label="tmp5 = (v143 v145^T) 3.4e+05"];
+node0 -> node102 [style=bold, label="tmp6 = (M146^T v145) 1e+04"];
+node0 -> node124 [label="tmp7 = (M146 M147^T) 5e+06"];
+
+node1 [shape=record, label="{ out = tmp22 |{ 1 | -1 | None | 1.04e+07 |  |  } }"];
+
+node2 [shape=record, label="{ out = (tmp8 v143 v145^T M146 M147^T) |{ 2 | -1 | None | 4.91e+09 |  | pruned } }"];
+
+node3 [shape=record, label="{ out = (s144 tmp3 v143 v145^T M146 M147^T) |{ 3 | -1 | None | 4.91e+09 |  | pruned } }"];
+
+node4 [shape=record, label="{ out = (s144 M141^-1 tmp4 v145^T M146 M147^T) |{ 4 | -1 | None | 5.78e+06 |  |  } }"];
+node4 -> node1 [label="tmp9 = (M141^-1 tmp4) 2.89e+06
+tmp13 = (s144 tmp9) 1.7e+03
+tmp6 = (M146^T v145) 1e+04
+tmp12 = (M147 tmp6) 5e+04
+tmp22 = (tmp13 tmp12^T) 1.7e+06"];
+node4 -> node6 [style=bold, label="tmp9 = (M141^-1 tmp4) 2.89e+06"];
+node4 -> node25 [label="tmp10 = (tmp4 v145^T) 3.4e+05"];
+node4 -> node30 [style=bold, label="tmp6 = (M146^T v145) 1e+04"];
+node4 -> node75 [label="tmp7 = (M146 M147^T) 5e+06"];
+
+node6 [shape=record, label="{ out = (s144 tmp9 v145^T M146 M147^T) |{ 6 | -1 | None | 8.67e+06 |  |  } }"];
+node6 -> node1 [label="tmp13 = (s144 tmp9) 1.7e+03
+tmp6 = (M146^T v145) 1e+04
+tmp12 = (M147 tmp6) 5e+04
+tmp22 = (tmp13 tmp12^T) 1.7e+06"];
+node6 -> node8 [label="tmp17 = (s144 tmp9 v145^T) 3.4e+05"];
+node6 -> node14 [label="tmp13 = (s144 tmp9) 1.7e+03"];
+node6 -> node28 [label="tmp14 = (tmp9 v145^T) 3.4e+05"];
+node6 -> node32 [style=bold, label="tmp6 = (M146^T v145) 1e+04"];
+node6 -> node77 [label="tmp7 = (M146 M147^T) 5e+06"];
+
+node8 [shape=record, label="{ out = (tmp17 M146 M147^T) |{ 8 | -1 | None | 9.01e+06 |  |  } }"];
+node8 -> node1 [label="tmp20 = (tmp17 M146) 1.7e+07
+tmp22 = (tmp20 M147^T) 8.5e+07"];
+node8 -> node10 [label="tmp20 = (tmp17 M146) 1.7e+07"];
+node8 -> node11 [label="tmp7 = (M146 M147^T) 5e+06"];
+
+node10 [shape=record, label="{ out = (tmp20 M147^T) |{ 10 | -1 | None | 8.85e+06 |  |  } }"];
+node10 -> node1 [label="tmp22 = (tmp20 M147^T) 8.5e+07"];
+node10 -> node1 [label="tmp22 = (tmp20 M147^T) 8.5e+07"];
+
+node11 [shape=record, label="{ out = (tmp17 tmp7) |{ 11 | -1 | None | 1.4e+07 |  |  } }"];
+node11 -> node1 [label="tmp22 = (tmp17 tmp7) 1.7e+08"];
+node11 -> node1 [label="tmp22 = (tmp17 tmp7) 1.7e+08"];
+
+node14 [shape=record, label="{ out = (tmp13 v145^T M146 M147^T) |{ 14 | -1 | None | 8.67e+06 |  |  } }"];
+node14 -> node1 [label="tmp6 = (M146^T v145) 1e+04
+tmp12 = (M147 tmp6) 5e+04
+tmp22 = (tmp13 tmp12^T) 1.7e+06"];
+node14 -> node8 [label="tmp17 = (tmp13 v145^T) 3.4e+05"];
+node14 -> node17 [label="tmp6 = (M146^T v145) 1e+04"];
+node14 -> node59 [label="tmp7 = (M146 M147^T) 5e+06"];
+
+node17 [shape=record, label="{ out = (tmp13 tmp6^T M147^T) |{ 17 | -1 | None | 8.68e+06 |  |  } }"];
+node17 -> node1 [label="tmp12 = (M147 tmp6) 5e+04
+tmp22 = (tmp13 tmp12^T) 1.7e+06"];
+node17 -> node10 [label="tmp20 = (tmp13 tmp6^T) 1.7e+05"];
+node17 -> node22 [label="tmp12 = (M147 tmp6) 5e+04"];
+
+node22 [shape=record, label="{ out = (tmp13 tmp12^T) |{ 22 | -1 | None | 8.73e+06 |  |  } }"];
+node22 -> node1 [label="tmp22 = (tmp13 tmp12^T) 1.7e+06"];
+node22 -> node1 [label="tmp22 = (tmp13 tmp12^T) 1.7e+06"];
+
+node25 [shape=record, label="{ out = (s144 M141^-1 tmp10 M146 M147^T) |{ 25 | -1 | None | 6.12e+06 |  |  } }"];
+node25 -> node1 [label="tmp15 = (tmp10 M146) 1.7e+07
+tmp18 = (M141^-1 tmp15) 1.44e+08
+tmp20 = (s144 tmp18) 8.5e+04
+tmp22 = (tmp20 M147^T) 8.5e+07"];
+node25 -> node8 [label="tmp17 = (s144 M141^-1 tmp10) 2.89e+08"];
+node25 -> node28 [label="tmp14 = (M141^-1 tmp10) 2.89e+08"];
+node25 -> node29 [label="tmp15 = (tmp10 M146) 1.7e+07"];
+node25 -> node81 [label="tmp7 = (M146 M147^T) 5e+06"];
+
+node28 [shape=record, label="{ out = (s144 tmp14 M146 M147^T) |{ 28 | -1 | None | 9.01e+06 |  |  } }"];
+node28 -> node1 [label="tmp18 = (tmp14 M146) 1.7e+07
+tmp20 = (s144 tmp18) 8.5e+04
+tmp22 = (tmp20 M147^T) 8.5e+07"];
+node28 -> node10 [label="tmp20 = (s144 tmp14 M146) 1.7e+07"];
+node28 -> node8 [label="tmp17 = (s144 tmp14) 1.7e+05"];
+node28 -> node39 [label="tmp18 = (tmp14 M146) 1.7e+07"];
+node28 -> node68 [label="tmp7 = (M146 M147^T) 5e+06"];
+
+node29 [shape=record, label="{ out = (s144 M141^-1 tmp15 M147^T) |{ 29 | -1 | None | 5.96e+06 |  |  } }"];
+node29 -> node1 [label="tmp18 = (M141^-1 tmp15) 1.44e+08
+tmp20 = (s144 tmp18) 8.5e+04
+tmp22 = (tmp20 M147^T) 8.5e+07"];
+node29 -> node10 [label="tmp20 = (s144 M141^-1 tmp15) 1.44e+08"];
+node29 -> node39 [label="tmp18 = (M141^-1 tmp15) 1.44e+08"];
+node29 -> node40 [label="tmp19 = (tmp15 M147^T) 8.5e+07"];
+
+node30 [shape=record, label="{ out = (s144 M141^-1 tmp4 tmp6^T M147^T) |{ 30 | -1 | None | 5.79e+06 |  |  } }"];
+node30 -> node1 [label="tmp9 = (M141^-1 tmp4) 2.89e+06
+tmp13 = (s144 tmp9) 1.7e+03
+tmp12 = (M147 tmp6) 5e+04
+tmp22 = (tmp13 tmp12^T) 1.7e+06"];
+node30 -> node32 [style=bold, label="tmp9 = (M141^-1 tmp4) 2.89e+06"];
+node30 -> node29 [label="tmp15 = (tmp4 tmp6^T) 1.7e+05"];
+node30 -> node41 [style=bold, label="tmp12 = (M147 tmp6) 5e+04"];
+
+node32 [shape=record, label="{ out = (s144 tmp9 tmp6^T M147^T) |{ 32 | -1 | None | 8.68e+06 |  |  } }"];
+node32 -> node1 [label="tmp13 = (s144 tmp9) 1.7e+03
+tmp12 = (M147 tmp6) 5e+04
+tmp22 = (tmp13 tmp12^T) 1.7e+06"];
+node32 -> node10 [label="tmp20 = (s144 tmp9 tmp6^T) 1.7e+05"];
+node32 -> node17 [label="tmp13 = (s144 tmp9) 1.7e+03"];
+node32 -> node39 [label="tmp18 = (tmp9 tmp6^T) 1.7e+05"];
+node32 -> node43 [style=bold, label="tmp12 = (M147 tmp6) 5e+04"];
+
+node39 [shape=record, label="{ out = (s144 tmp18 M147^T) |{ 39 | -1 | None | 8.85e+06 |  |  } }"];
+node39 -> node1 [label="tmp20 = (s144 tmp18) 8.5e+04
+tmp22 = (tmp20 M147^T) 8.5e+07"];
+node39 -> node1 [label="tmp22 = (s144 tmp18 M147^T) 8.5e+07"];
+node39 -> node10 [label="tmp20 = (s144 tmp18) 8.5e+04"];
+node39 -> node50 [label="tmp21 = (tmp18 M147^T) 8.5e+07"];
+
+node40 [shape=record, label="{ out = (s144 M141^-1 tmp19) |{ 40 | -1 | None | 7.54e+06 |  |  } }"];
+node40 -> node1 [label="tmp21 = (M141^-1 tmp19) 1.44e+09
+tmp22 = (s144 tmp21) 8.5e+05"];
+node40 -> node1 [label="tmp22 = (s144 M141^-1 tmp19) 1.44e+09"];
+node40 -> node50 [label="tmp21 = (M141^-1 tmp19) 1.44e+09"];
+
+node41 [shape=record, label="{ out = (s144 M141^-1 tmp4 tmp12^T) |{ 41 | -1 | None | 5.84e+06 |  |  } }"];
+node41 -> node1 [label="tmp9 = (M141^-1 tmp4) 2.89e+06
+tmp13 = (s144 tmp9) 1.7e+03
+tmp22 = (tmp13 tmp12^T) 1.7e+06"];
+node41 -> node43 [style=bold, label="tmp9 = (M141^-1 tmp4) 2.89e+06"];
+node41 -> node40 [label="tmp19 = (tmp4 tmp12^T) 1.7e+06"];
+
+node43 [shape=record, label="{ out = (s144 tmp9 tmp12^T) |{ 43 | -1 | None | 8.73e+06 |  |  } }"];
+node43 -> node1 [style=bold, label="tmp13 = (s144 tmp9) 1.7e+03
+tmp22 = (tmp13 tmp12^T) 1.7e+06"];
+node43 -> node1 [style=bold, label="tmp22 = (s144 tmp9 tmp12^T) 1.7e+06"];
+node43 -> node22 [label="tmp13 = (s144 tmp9) 1.7e+03"];
+node43 -> node50 [label="tmp21 = (tmp9 tmp12^T) 1.7e+06"];
+
+node50 [shape=record, label="{ out = (s144 tmp21) |{ 50 | -1 | None | 1.04e+07 |  |  } }"];
+node50 -> node1 [label="tmp22 = (s144 tmp21) 8.5e+05"];
+node50 -> node1 [label="tmp22 = (s144 tmp21) 8.5e+05"];
+
+node59 [shape=record, label="{ out = (tmp13 v145^T tmp7) |{ 59 | -1 | None | 1.37e+07 |  |  } }"];
+node59 -> node1 [label="tmp12 = (tmp7^T v145) 1e+05
+tmp22 = (tmp13 tmp12^T) 1.7e+06"];
+node59 -> node11 [label="tmp17 = (tmp13 v145^T) 3.4e+05"];
+node59 -> node22 [label="tmp12 = (tmp7^T v145) 1e+05"];
+
+node68 [shape=record, label="{ out = (s144 tmp14 tmp7) |{ 68 | -1 | None | 1.4e+07 |  |  } }"];
+node68 -> node1 [label="tmp17 = (s144 tmp14) 1.7e+05
+tmp22 = (tmp17 tmp7) 1.7e+08"];
+node68 -> node1 [label="tmp22 = (s144 tmp14 tmp7) 1.7e+08"];
+node68 -> node11 [label="tmp17 = (s144 tmp14) 1.7e+05"];
+node68 -> node50 [label="tmp21 = (tmp14 tmp7) 1.7e+08"];
+
+node75 [shape=record, label="{ out = (s144 M141^-1 tmp4 v145^T tmp7) |{ 75 | -1 | None | 1.08e+07 |  |  } }"];
+node75 -> node1 [label="tmp9 = (M141^-1 tmp4) 2.89e+06
+tmp13 = (s144 tmp9) 1.7e+03
+tmp12 = (tmp7^T v145) 1e+05
+tmp22 = (tmp13 tmp12^T) 1.7e+06"];
+node75 -> node77 [label="tmp9 = (M141^-1 tmp4) 2.89e+06"];
+node75 -> node81 [label="tmp10 = (tmp4 v145^T) 3.4e+05"];
+node75 -> node41 [label="tmp12 = (tmp7^T v145) 1e+05"];
+
+node77 [shape=record, label="{ out = (s144 tmp9 v145^T tmp7) |{ 77 | -1 | None | 1.37e+07 |  |  } }"];
+node77 -> node1 [label="tmp13 = (s144 tmp9) 1.7e+03
+tmp12 = (tmp7^T v145) 1e+05
+tmp22 = (tmp13 tmp12^T) 1.7e+06"];
+node77 -> node11 [label="tmp17 = (s144 tmp9 v145^T) 3.4e+05"];
+node77 -> node59 [label="tmp13 = (s144 tmp9) 1.7e+03"];
+node77 -> node68 [label="tmp14 = (tmp9 v145^T) 3.4e+05"];
+node77 -> node43 [label="tmp12 = (tmp7^T v145) 1e+05"];
+
+node81 [shape=record, label="{ out = (s144 M141^-1 tmp10 tmp7) |{ 81 | -1 | None | 1.11e+07 |  |  } }"];
+node81 -> node1 [label="tmp14 = (M141^-1 tmp10) 2.89e+08
+tmp17 = (s144 tmp14) 1.7e+05
+tmp22 = (tmp17 tmp7) 1.7e+08"];
+node81 -> node11 [label="tmp17 = (s144 M141^-1 tmp10) 2.89e+08"];
+node81 -> node68 [label="tmp14 = (M141^-1 tmp10) 2.89e+08"];
+node81 -> node40 [label="tmp19 = (tmp10 tmp7) 1.7e+08"];
+
+node90 [shape=record, label="{ out = (s144 M141^-1 M142 tmp5 M146 M147^T) |{ 90 | -1 | None | 3.4e+05 |  |  } }"];
+node90 -> node1 [label="tmp11 = (tmp5 M146) 1.7e+07
+tmp15 = (M142 tmp11) 2.89e+08
+tmp18 = (M141^-1 tmp15) 1.44e+08
+tmp20 = (s144 tmp18) 8.5e+04
+tmp22 = (tmp20 M147^T) 8.5e+07"];
+node90 -> node92 [label="tmp8 = (s144 M141^-1 M142) 4.91e+09"];
+node90 -> node93 [label="tmp3 = (M141^-1 M142) 4.91e+09"];
+node90 -> node25 [label="tmp10 = (M142 tmp5) 5.78e+08"];
+node90 -> node95 [label="tmp11 = (tmp5 M146) 1.7e+07"];
+node90 -> node96 [label="tmp7 = (M146 M147^T) 5e+06"];
+
+node92 [shape=record, label="{ out = (tmp8 tmp5 M146 M147^T) |{ 92 | -1 | None | 4.91e+09 |  | pruned } }"];
+
+node93 [shape=record, label="{ out = (s144 tmp3 tmp5 M146 M147^T) |{ 93 | -1 | None | 4.91e+09 |  | pruned } }"];
+
+node95 [shape=record, label="{ out = (s144 M141^-1 M142 tmp11 M147^T) |{ 95 | -1 | None | 1.8e+05 |  |  } }"];
+node95 -> node1 [label="tmp15 = (M142 tmp11) 2.89e+08
+tmp18 = (M141^-1 tmp15) 1.44e+08
+tmp20 = (s144 tmp18) 8.5e+04
+tmp22 = (tmp20 M147^T) 8.5e+07"];
+node95 -> node109 [label="tmp8 = (s144 M141^-1 M142) 4.91e+09"];
+node95 -> node110 [label="tmp3 = (M141^-1 M142) 4.91e+09"];
+node95 -> node29 [label="tmp15 = (M142 tmp11) 2.89e+08"];
+node95 -> node101 [label="tmp16 = (tmp11 M147^T) 8.5e+07"];
+
+node96 [shape=record, label="{ out = (s144 M141^-1 M142 tmp5 tmp7) |{ 96 | -1 | None | 5.34e+06 |  |  } }"];
+node96 -> node1 [label="tmp10 = (M142 tmp5) 5.78e+08
+tmp14 = (M141^-1 tmp10) 2.89e+08
+tmp17 = (s144 tmp14) 1.7e+05
+tmp22 = (tmp17 tmp7) 1.7e+08"];
+node96 -> node98 [label="tmp8 = (s144 M141^-1 M142) 4.91e+09"];
+node96 -> node99 [label="tmp3 = (M141^-1 M142) 4.91e+09"];
+node96 -> node81 [label="tmp10 = (M142 tmp5) 5.78e+08"];
+node96 -> node101 [label="tmp16 = (tmp5 tmp7) 1.7e+08"];
+
+node98 [shape=record, label="{ out = (tmp8 tmp5 tmp7) |{ 98 | -1 | None | 4.92e+09 |  | pruned } }"];
+
+node99 [shape=record, label="{ out = (s144 tmp3 tmp5 tmp7) |{ 99 | -1 | None | 4.92e+09 |  | pruned } }"];
+
+node101 [shape=record, label="{ out = (s144 M141^-1 M142 tmp16) |{ 101 | -1 | None | 1.76e+06 |  |  } }"];
+node101 -> node1 [label="tmp19 = (M142 tmp16) 2.89e+09
+tmp21 = (M141^-1 tmp19) 1.44e+09
+tmp22 = (s144 tmp21) 8.5e+05"];
+node101 -> node120 [label="tmp8 = (s144 M141^-1 M142) 4.91e+09"];
+node101 -> node121 [label="tmp3 = (M141^-1 M142) 4.91e+09"];
+node101 -> node40 [label="tmp19 = (M142 tmp16) 2.89e+09"];
+
+node102 [shape=record, label="{ out = (s144 M141^-1 M142 v143 tmp6^T M147^T) |{ 102 | -1 | None | 1e+04 |  |  } }"];
+node102 -> node1 [label="tmp4 = (M142 v143) 5.78e+06
+tmp9 = (M141^-1 tmp4) 2.89e+06
+tmp13 = (s144 tmp9) 1.7e+03
+tmp12 = (M147 tmp6) 5e+04
+tmp22 = (tmp13 tmp12^T) 1.7e+06"];
+node102 -> node104 [label="tmp8 = (s144 M141^-1 M142) 4.91e+09"];
+node102 -> node105 [label="tmp3 = (M141^-1 M142) 4.91e+09"];
+node102 -> node30 [style=bold, label="tmp4 = (M142 v143) 5.78e+06"];
+node102 -> node95 [label="tmp11 = (v143 tmp6^T) 1.7e+05"];
+node102 -> node113 [style=bold, label="tmp12 = (M147 tmp6) 5e+04"];
+
+node104 [shape=record, label="{ out = (tmp8 v143 tmp6^T M147^T) |{ 104 | -1 | None | 4.91e+09 |  | pruned } }"];
+
+node105 [shape=record, label="{ out = (s144 tmp3 v143 tmp6^T M147^T) |{ 105 | -1 | None | 4.91e+09 |  | pruned } }"];
+
+node109 [shape=record, label="{ out = (tmp8 tmp11 M147^T) |{ 109 | -1 | None | 4.91e+09 |  | pruned } }"];
+
+node110 [shape=record, label="{ out = (s144 tmp3 tmp11 M147^T) |{ 110 | -1 | None | 4.91e+09 |  | pruned } }"];
+
+node113 [shape=record, label="{ out = (s144 M141^-1 M142 v143 tmp12^T) |{ 113 | -1 | None | 6e+04 |  |  } }"];
+node113 -> node1 [label="tmp4 = (M142 v143) 5.78e+06
+tmp9 = (M141^-1 tmp4) 2.89e+06
+tmp13 = (s144 tmp9) 1.7e+03
+tmp22 = (tmp13 tmp12^T) 1.7e+06"];
+node113 -> node115 [label="tmp8 = (s144 M141^-1 M142) 4.91e+09"];
+node113 -> node116 [label="tmp3 = (M141^-1 M142) 4.91e+09"];
+node113 -> node41 [style=bold, label="tmp4 = (M142 v143) 5.78e+06"];
+node113 -> node101 [label="tmp16 = (v143 tmp12^T) 1.7e+06"];
+
+node115 [shape=record, label="{ out = (tmp8 v143 tmp12^T) |{ 115 | -1 | None | 4.91e+09 |  | pruned } }"];
+
+node116 [shape=record, label="{ out = (s144 tmp3 v143 tmp12^T) |{ 116 | -1 | None | 4.91e+09 |  | pruned } }"];
+
+node120 [shape=record, label="{ out = (tmp8 tmp16) |{ 120 | -1 | None | 4.91e+09 |  | pruned } }"];
+
+node121 [shape=record, label="{ out = (s144 tmp3 tmp16) |{ 121 | -1 | None | 4.91e+09 |  | pruned } }"];
+
+node124 [shape=record, label="{ out = (s144 M141^-1 M142 v143 v145^T tmp7) |{ 124 | -1 | None | 5e+06 |  |  } }"];
+node124 -> node1 [label="tmp4 = (M142 v143) 5.78e+06
+tmp9 = (M141^-1 tmp4) 2.89e+06
+tmp13 = (s144 tmp9) 1.7e+03
+tmp12 = (tmp7^T v145) 1e+05
+tmp22 = (tmp13 tmp12^T) 1.7e+06"];
+node124 -> node126 [label="tmp8 = (s144 M141^-1 M142) 4.91e+09"];
+node124 -> node127 [label="tmp3 = (M141^-1 M142) 4.91e+09"];
+node124 -> node75 [label="tmp4 = (M142 v143) 5.78e+06"];
+node124 -> node96 [label="tmp5 = (v143 v145^T) 3.4e+05"];
+node124 -> node113 [label="tmp12 = (tmp7^T v145) 1e+05"];
+
+node126 [shape=record, label="{ out = (tmp8 v143 v145^T tmp7) |{ 126 | -1 | None | 4.92e+09 |  | pruned } }"];
+
+node127 [shape=record, label="{ out = (s144 tmp3 v143 v145^T tmp7) |{ 127 | -1 | None | 4.92e+09 |  | pruned } }"];
+
+}

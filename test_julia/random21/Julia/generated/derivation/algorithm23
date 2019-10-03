@@ -1,0 +1,21 @@
+# cost 3.68e+06
+
+out = ((M109^T M110 M111 v113) + (M109^T M110 M112^T v113))
+
+tmp12 = (M112^T v113)         # 3.45e+05
+
+out = ((M109^T M110 tmp12) + (M109^T M110 M111 v113))
+
+tmp9 = (M111 v113)            # 3.45e+05
+
+out = (M109^T M110 (tmp12 + tmp9))
+
+tmp4 = (tmp12 + tmp9)         # 1.15e+03
+
+out = (M109^T M110 tmp4)
+
+tmp6 = (M110 tmp4)            # 1.15e+03
+
+tmp7 = (M109^T tmp6)          # 2.99e+06
+
+out = tmp7

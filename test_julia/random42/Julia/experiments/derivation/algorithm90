@@ -1,0 +1,21 @@
+# cost 1.21e+10
+
+out = ((M231 + M232^T) M233^T (M235 + M234^T + M236^T))
+
+tmp1 = (M231 + M232^T)        # 1.95e+06
+
+out = (tmp1 M233^T (M235 + M234^T + M236^T))
+
+tmp7 = (M234 + M236)          # 4.8e+06
+
+out = (tmp1 M233^T (M235 + tmp7^T))
+
+tmp3 = (M235 + tmp7^T)        # 2.4e+06
+
+out = (tmp1 M233^T tmp3)
+
+tmp5 = (M233^T tmp3)          # 6.24e+09
+
+tmp6 = (tmp1 tmp5)            # 5.85e+09
+
+out = tmp6
