@@ -10,8 +10,8 @@ finish = 0.0
 
 batch = 100
 #sizes=[200,300,1000]
-sizes = Array{Int,1}(undef,200)
-for j =1:200
+sizes = Array{Int,1}(undef,150)
+for j =1:150
   sizes[j] = 10*j
 end
 
@@ -34,30 +34,33 @@ function run()
 		B = rand(s,s)
 		C = Array{Float64}(undef,s,s)
 		times = Array{Float64,1}(undef,batch)
+    flops = Array{Float64,1}(undef,batch)
 		cost = 2*s*s*s
 
 		Benchmarker.cachescrub()
 		preprocess()
 
 		for i = 1:batch
+      Benchmarker.cachescrub()
 		 	start = time_ns()
-	   	gemm!('N','N',1.0,A,B,0.0,C)
+	   	gemm!('T','N',1.0,A,B,0.0,C)
 		 	finish = time_ns()
 		 	times[i] = (finish-start)*1e-9
+      flops[i] = cost
 		end
 
 		#for i = 1:batch
 		#	times[i] = (cost/times[i])*1e-9
 		#end
 
-		write_times(s,times)
+		write_times(s,times,flops)
 	end
 end
 
-function write_times(size,times)
+function write_times(size,times,flops)
   s = ""
 	for i in 1:batch
-	   s = s*string(size)*"\t"*string(times[i])*"\n"
+	   s = s*string(size)*"\t"*string(times[i])*"\t"*string(flops[i])*"\n"
 	end
 	write(f,s)
 end

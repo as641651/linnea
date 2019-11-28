@@ -17,8 +17,8 @@ if __name__ == "__main__":
     import linnea.examples.as01
 
 
-    #example = linnea.examples.application.Example15()
-    example = linnea.examples.as01.Example02I()
+    example = linnea.examples.application.Example16()
+    #example = linnea.examples.as01.Example01()
 
     # example = linnea.examples.examples.Example113()
     # example = linnea.examples.examples.Example047()
@@ -56,7 +56,7 @@ if __name__ == "__main__":
     # print(":".join(str(t) for t in trace))
 
     #trace = graph.derivation(time_limit=5)
-    trace = graph.derivation(time_limit=300, pruning_factor=1.5)
+    trace = graph.derivation(time_limit=300, pruning_factor=500.)
     print(trace)
 
     # import linnea.temporaries
@@ -69,4 +69,5 @@ if __name__ == "__main__":
                        experiment_code=True,
                        algorithms_limit=100,
                        graph=True,
-                       graph_style=linnea.config.GraphStyle.full)
+                       graph_style=linnea.config.GraphStyle.full,
+		       no_duplicates=True)

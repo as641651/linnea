@@ -112,9 +112,9 @@ class Example05():
     def __init__(self):
 
 
-        n = 500
-        m = 480
-        k = 300
+        n = 200
+        m = 200
+        k = 1
 
         A = Matrix("A", (n, m))
         A.set_property(properties.FULL_RANK)
