@@ -60,24 +60,22 @@ test_expressions = glob.glob(test_cases_folder+"/*")
 if not os.path.exists(result_folder_base):
     os.mkdir(result_folder_base)
 
-runners = {}
+runners = []
 for test_exp_folder in test_expressions:
     expression = test_exp_folder.split("/")[-1]
     result_folder = os.path.join(result_folder_base,expression)
     if not os.path.exists(result_folder):
         os.mkdir(result_folder)
-    runners[expression] = []
     for i in range(NUM_REPS):
         runner_file = generate_julia_runner(test_exp_folder,result_folder,i,SUB_REPS)
-        runners[expression].append(runner_file)
+        runners.append(runner_file)
 
+random.shuffle(runners)
 code = ""
-for k,v in runners.items():
-   code += "echo \"Expression " + k + "\"\n"
-   for exp in v:
-       code += "echo \"Running " + exp + "\"\n"
-       code += "/julia/julia "+exp + " \n"
-       code += "sleep 2\n\n"
+for exp in runners:
+   code += "echo \"Running " + exp + "\"\n"
+   code += "/julia/julia "+exp + " \n"
+   code += "sleep 2\n\n"
 
 f = open("runner.sh","w")
 f.write(code)
