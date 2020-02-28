@@ -6,12 +6,12 @@ import linnea.examples.application as lapp
 
 import linnea.config
 
-#NUM_APP_EXAMPLES = 25
-#NUM_RANDOM_EXAMPLES = 100
-NUM_APP_EXAMPLES = 2
-NUM_RANDOM_EXAMPLES = 2
+NUM_APP_EXAMPLES = 25
+NUM_RANDOM_EXAMPLES = 1
+#NUM_APP_EXAMPLES = 2
+#NUM_RANDOM_EXAMPLES = 2
 
-test_expressions_folder = "test_expressions_sample"
+test_expressions_folder = "test_expressions"
 if os.path.exists(test_expressions_folder):
     shutil.rmtree(test_expressions_folder)
 
@@ -37,6 +37,7 @@ for i,ex in enumerate(rand_exprs):
 
 
 def generate_code(id, equations):
+    linnea.config.clear_all()
     graph = DerivationGraph(equations)
     graph.derivation(time_limit=10,
                      merging=True,
