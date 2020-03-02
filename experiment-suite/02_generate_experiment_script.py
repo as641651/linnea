@@ -16,7 +16,7 @@ def generate_julia_runner(test_exp_folder,result_folder,id,sub_reps):
     operand_file = os.path.abspath(os.path.join(base_folder,"operand_generator.jl"))
     TEMPLATE_DICT["include_operand_generator"] = "include(\"{}\")".format(operand_file)
 
-    experiment_folder = os.path.abspath(os.path.join(base_folder,"experiments"))
+    experiment_folder = os.path.abspath(os.path.join(base_folder,"k_best"))
     algorithms = glob.glob(experiment_folder + "/*.jl")
     algorithms = [(exp.split("/")[-1].split(".")[0],exp) for exp in algorithms]
     random.shuffle(algorithms)
@@ -53,7 +53,7 @@ def get_flops(test_cases_folder):
     for exp in test_expressions:
         key = exp.split("/")[-1]
         flops[key] = {}
-        algs = glob.glob(os.path.join(exp,"Julia/experiments/")+"/*.jl")
+        algs = glob.glob(os.path.join(exp,"Julia/k_best/")+"/*.jl")
         #print(algs)
         for alg in algs:
             cost = 0
@@ -65,6 +65,28 @@ def get_flops(test_cases_folder):
                         flops[key][alg.split("/")[-1].split(".")[0]] = cost
 
     return flops
+
+def get_data(test_cases_folder):
+    data = {}
+    data["flops"] = {}
+    data["bytes"] = {}
+    data["intensity"] = {}
+
+    test_expressions = glob.glob(test_cases_folder+"/*")
+    for exp in test_expressions:
+        key = exp.split("/")[-1]
+        data["flops"][key] = {}
+        data["bytes"][key] = {}
+        data["intensity"][key] = {}
+        with open(os.path.join(exp,"intensity.txt")) as f:
+            lines = f.readlines()
+            for line in lines:
+                alg,bytes,cost,intensity = line.strip().split()
+                data["flops"][key][alg] = cost
+                data["bytes"][key][alg] = bytes
+                data["intensity"][key][alg] = intensity
+
+    return data
 
 if __name__ == "__main__":
 
@@ -98,9 +120,9 @@ if __name__ == "__main__":
     if not os.path.exists(RESULT_FOLDER_BASE):
         os.mkdir(RESULT_FOLDER_BASE)
 
-    flops = get_flops(TEST_EXPRESSIONS_FOLDER)
-    with open(os.path.join(RESULT_FOLDER_BASE,"flops.json"),"w") as f:
-        json.dump(flops,f)
+    compute_data = get_data(TEST_EXPRESSIONS_FOLDER)
+    with open(os.path.join(RESULT_FOLDER_BASE,"computeData.json"),"w") as f:
+        json.dump(compute_data,f)
     if DEBUG_FLOPS:
         exit(code=-1)
 

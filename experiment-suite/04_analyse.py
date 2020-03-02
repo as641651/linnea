@@ -68,9 +68,9 @@ if __name__ == "__main__":
     with open(data_file) as jf:
         data = json.load(jf)
 
-    flops_file = os.path.join(RESULT_FOLDER_BASE,"flops.json")
-    with open(flops_file) as jf:
-        flops = json.load(jf)
+    compute_data_file = os.path.join(RESULT_FOLDER_BASE,"computeData.json")
+    with open(compute_data_file) as jf:
+        compute_data = json.load(jf)
 
     config_file = os.path.join(RESULT_FOLDER_BASE,"config.json")
     with open(config_file) as jf:
@@ -95,35 +95,44 @@ if __name__ == "__main__":
             if ret==2:
                 best_alg = data[k][str(i)]
                 best_alg_id = int(i)
+
         if(best_alg_id != 0 ):
             ta = min(data[k]["0"])
-            flops_a = flops[k.split("/")[-1]]["algorithm0"]
+            flops_a = float(compute_data["flops"][k.split("/")[-1]]["0"])
+            intensity_a = float(compute_data["intensity"][k.split("/")[-1]]["0"])
             tb = min(data[k][str(best_alg_id)])
-            flops_b = flops[k.split("/")[-1]]["algorithm"+str(best_alg_id)]
+            flops_b = float(compute_data["flops"][k.split("/")[-1]][str(best_alg_id)])
+            intensity_b = float(compute_data["intensity"][k.split("/")[-1]][str(best_alg_id)])
             speed_up = float(ta/tb)
+            vals = [k,int(best_alg_id),flops_a, flops_b, intensity_a, intensity_b , speed_up]
             if flops_a == flops_b:
                 #if speed_up >= 1.05:
                     #print(k, best_alg_id, flops_a, flops_b, speed_up )
-                    cases_sf.append((k,best_alg_id,flops_a, flops_b, speed_up))
+                    cases_sf.append(vals)
 
             if flops_a != flops_b:
                 #if speed_up >= 1.05:
                     #print(k, best_alg_id, flops_a, flops_b, speed_up )
-                    cases_df.append((k,best_alg_id,flops_a, flops_b, speed_up))
+                    cases_df.append(vals)
 
+
+    cases_sf = np.array(cases_sf)
+    if len(cases_sf) > 0:
+        cases_sf = cases_sf[np.argsort(cases_sf[:,5])]
+
+    cases_df = np.array(cases_df)
+    if len(cases_df) > 0:
+        cases_df = cases_df[np.argsort(cases_df[:,5])]
 
     out = "#TOTAL CASES : " + str(len(data.keys())-len(missing)) + "\n"
     out += "#SAME FLOPS\n"
+
     for case in cases_sf:
-        for val in case:
-            out+= str(object=val) + "\t"
-        out+= "\n"
+        out+= "{}\t{}\t{:.3e}\t{:.3e}\t{:.3e}\t{:.3e}\t{:.3f}\n".format(case[0],int(case[1]),float(case[2]),float(case[3]),float(case[4]),float(case[5]),float(case[6]))
     out += "#Num SAME FLOPS CASES : " + str(len(cases_sf)) + "\n"
 
     for case in cases_df:
-        for val in case:
-            out+= str(object=val) + "\t"
-        out+= "\n"
+        out+= "{}\t{}\t{:.3e}\t{:.3e}\t{:.3e}\t{:.3e}\t{:.3f}\n".format(case[0],int(case[1]),float(case[2]),float(case[3]),float(case[4]),float(case[5]),float(case[6]))
     out += "#Num DIFFERENT FLOPS CASES : " + str(len(cases_df)) + "\n"
 
 

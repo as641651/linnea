@@ -35,14 +35,23 @@ def generate_code(id, equations):
                      dead_ends=True,
                      pruning_factor=1.5)
 
-    graph.write_output(code=True,
-                       derivation=True,
-                       output_name=id,
-                       experiment_code=True,
-                       algorithms_limit=100,
-                       graph=True,
-                       no_duplicates=True)
+    algorithms = graph.write_output(code=True,
+                                   derivation=True,
+                                   output_name=id,
+                                   k_best=True,
+                                   subdir_name_experiments = "k_best",
+                                   experiment_code=True,
+                                   algorithms_limit=100,
+                                   graph=True,
+                                   no_duplicates=True)
 
+    intensity = ""
+    for i,algorithm in enumerate(algorithms):
+        intensity += str(i) + "\t" + str(algorithm.data) + "\t" + str(algorithm.cost) + "\t" + str(algorithm.intensity) + "\n"
+
+    f = open(os.path.join(TEST_EXPRESSIONS_FOLDER,id,"intensity.txt"),"w")
+    f.write(intensity)
+    f.close()
 
 if __name__ == "__main__":
 
