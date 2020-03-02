@@ -106,7 +106,11 @@ if __name__ == "__main__":
     NUM_REPS = ARGV["num_reps"]
 
     TEST_EXPRESSIONS_FOLDER = ARGV["test_expressions_folder"]
-    RESULT_FOLDER_BASE = ARGV["test_expressions_folder"] + "_results"
+
+    try:
+        RESULT_FOLDER_BASE = sys.argv[2]
+    except IndexError:
+        RESULT_FOLDER_BASE = ARGV["test_expressions_folder"] + "_results"
 
     if os.path.exists(RESULT_FOLDER_BASE) and not DEBUG_FLOPS:
         print("Removing {} ... ".format(RESULT_FOLDER_BASE))
