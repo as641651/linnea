@@ -3,24 +3,18 @@ import os
 import random
 import glob
 import shutil
+import json
+import sys
+import pprint
 
-SUB_REPS = 1
-NUM_REPS = 3
-
-ARGS = {}
-ARGS["num_threads"] = 24
-test_cases_folder = "test_expressions_sample/"
-#THIS FOLDER WILL BE REMOVED!!!
-result_folder_base = "results_sample/"
-if os.path.exists(result_folder_base):
-    shutil.rmtree(result_folder_base)
+DEBUG_FLOPS = False
 
 def generate_julia_runner(test_exp_folder,result_folder,id,sub_reps):
 
     base_folder = os.path.join(test_exp_folder, "Julia/")
-    #ARGS["exp_dir"] = base_folder
+    #TEMPLATE_DICT["exp_dir"] = base_folder
     operand_file = os.path.abspath(os.path.join(base_folder,"operand_generator.jl"))
-    ARGS["include_operand_generator"] = "include(\"{}\")".format(operand_file)
+    TEMPLATE_DICT["include_operand_generator"] = "include(\"{}\")".format(operand_file)
 
     experiment_folder = os.path.abspath(os.path.join(base_folder,"experiments"))
     algorithms = glob.glob(experiment_folder + "/*.jl")
@@ -30,21 +24,21 @@ def generate_julia_runner(test_exp_folder,result_folder,id,sub_reps):
     include_experiment = ""
     for alg in algorithms:
         include_experiment += "include(\"{}\")\n".format(alg[1])
-    ARGS["include_experiments"] = include_experiment
+    TEMPLATE_DICT["include_experiments"] = include_experiment
 
     experiments = ""
     algorithms = algorithms*sub_reps
     for alg in algorithms:
         exp_name = alg[0]
         experiments += "\tBenchmarker.add_data(plotter, [\"{}\"; 24], Benchmarker.measure(2, {}, map(MatrixGenerator.unwrap, matrices)...) );\n".format(exp_name,exp_name)
-    ARGS["experiments"] = experiments
+    TEMPLATE_DICT["experiments"] = experiments
 
     timings_folder = os.path.abspath(os.path.join(result_folder,"timings"))
     if not os.path.exists(timings_folder):
         os.mkdir(timings_folder)
-    ARGS["result_file"] = os.path.join(timings_folder,"result"+str(id))
+    TEMPLATE_DICT["result_file"] = os.path.join(timings_folder,"result"+str(id))
 
-    code = runner.format(**ARGS)
+    code = RUNNER.format(**TEMPLATE_DICT)
     runner_file = os.path.join(result_folder,str(id)+"runner.jl")
     f = open(runner_file,"w")
     f.write(code)
@@ -52,31 +46,93 @@ def generate_julia_runner(test_exp_folder,result_folder,id,sub_reps):
 
     return runner_file
 
-template_path = "templates/"
-runner = pkg_resources.resource_string(__name__,os.path.join(template_path,"runner.jl")).decode("UTF-8")
 
-test_expressions = glob.glob(test_cases_folder+"/*")
+def get_flops(test_cases_folder):
+    test_expressions = glob.glob(test_cases_folder+"/*")
+    flops = {}
+    for exp in test_expressions:
+        key = exp.split("/")[-1]
+        flops[key] = {}
+        algs = glob.glob(os.path.join(exp,"Julia/experiments/")+"/*.jl")
+        #print(algs)
+        for alg in algs:
+            cost = 0
+            with open(alg) as f:
+                lines = f.readlines()
+                for line in lines:
+                    if "cost:" in line:
+                        cost = line.split("cost:")[-1].split()[0]
+                        flops[key][alg.split("/")[-1].split(".")[0]] = cost
 
-if not os.path.exists(result_folder_base):
-    os.mkdir(result_folder_base)
+    return flops
 
-runners = []
-for test_exp_folder in test_expressions:
-    expression = test_exp_folder.split("/")[-1]
-    result_folder = os.path.join(result_folder_base,expression)
-    if not os.path.exists(result_folder):
-        os.mkdir(result_folder)
-    for i in range(NUM_REPS):
-        runner_file = generate_julia_runner(test_exp_folder,result_folder,i,SUB_REPS)
-        runners.append(runner_file)
+if __name__ == "__main__":
 
-random.shuffle(runners)
-code = ""
-for exp in runners:
-   code += "echo \"Running " + exp + "\"\n"
-   code += "/julia/julia "+exp + " \n"
-   code += "sleep 2\n\n"
+    try:
+        with open(sys.argv[1]) as f:
+            ARGV = json.load(f)
+            pprint.pprint(ARGV)
+    except IndexError:
+        print("Error: Pass config file")
+        print("Usage: python 02_generate_experiment_script.py config.json")
+        exit(code=-1)
 
-f = open("runner.sh","w")
-f.write(code)
-f.close()
+
+    TEMPLATE_DICT = {}
+    TEMPLATE_DICT["num_threads"] = ARGV["num_threads"]
+    SUB_REPS = 1
+    NUM_REPS = ARGV["num_reps"]
+
+    TEST_EXPRESSIONS_FOLDER = ARGV["test_expressions_folder"]
+    RESULT_FOLDER_BASE = ARGV["test_expressions_folder"] + "_results"
+
+    if os.path.exists(RESULT_FOLDER_BASE) and not DEBUG_FLOPS:
+        print("Removing {} ... ".format(RESULT_FOLDER_BASE))
+        shutil.rmtree(RESULT_FOLDER_BASE)
+
+    template_path = "templates/"
+    RUNNER = pkg_resources.resource_string(__name__,os.path.join(template_path,"runner.jl")).decode("UTF-8")
+
+    test_expressions = glob.glob(TEST_EXPRESSIONS_FOLDER+"/*")
+
+    if not os.path.exists(RESULT_FOLDER_BASE):
+        os.mkdir(RESULT_FOLDER_BASE)
+
+    flops = get_flops(TEST_EXPRESSIONS_FOLDER)
+    with open(os.path.join(RESULT_FOLDER_BASE,"flops.json"),"w") as f:
+        json.dump(flops,f)
+    if DEBUG_FLOPS:
+        exit(code=-1)
+
+    with open(os.path.join(RESULT_FOLDER_BASE,"config.json"),"w") as f:
+        json.dump(ARGV,f)
+
+
+    runners = []
+    for test_exp_folder in test_expressions:
+        expression = test_exp_folder.split("/")[-1]
+        result_folder = os.path.join(RESULT_FOLDER_BASE,expression)
+        if not os.path.exists(result_folder):
+            os.mkdir(result_folder)
+        for i in range(NUM_REPS):
+            runner_file = generate_julia_runner(test_exp_folder,result_folder,i,SUB_REPS)
+            runners.append(runner_file)
+
+    random.shuffle(runners)
+
+    if ARGV["cluster"]:
+        runner_prepend = "source ~/.bashrc\n"
+        julia_call = "julia "
+    else:
+        runner_prepend = ""
+        julia_call = "/julia/julia "
+
+    code = runner_prepend
+    for exp in runners:
+       code += "echo \"Running " + exp + "\"\n"
+       code += julia_call+exp + " \n"
+       code += "sleep 2\n\n"
+
+    f = open("runner.sh","w")
+    f.write(code)
+    f.close()

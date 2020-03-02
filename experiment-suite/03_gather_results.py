@@ -2,16 +2,8 @@ import glob
 import os
 import json
 import re
+import sys
 
-
-result_folder_base = "results_sample/"
-
-analysis_folder = os.path.join(result_folder_base,"Analysis")
-if not os.path.exists(analysis_folder):
-    os.mkdir(analysis_folder)
-gather_result_file = os.path.join(analysis_folder,"gathered_results.json")
-
-RESULTS = {}
 
 def dump_results(filename,expression):
     f = open(filename)
@@ -35,13 +27,29 @@ def gather_results(expression):
         dump_results(res_file,expression)
 
 
+if __name__ == "__main__":
 
-expressions = glob.glob(result_folder_base+"/*_*")
-for exp in expressions:
-    gather_results(exp)
+    try:
+        RESULT_FOLDER_BASE = sys.argv[1]
+    except IndexError:
+        print("Error: Pass results folder")
+        print("Usage: python 03_gather_results.py results/")
+        exit(code=-1)
 
-#for k in sorted(RESULTS[expressions[0]]):
-#    print(k)
 
-with open(gather_result_file,'w') as outfile:
-    json.dump(RESULTS,outfile)
+    analysis_folder = os.path.join(RESULT_FOLDER_BASE,"Analysis")
+    if not os.path.exists(analysis_folder):
+        os.mkdir(analysis_folder)
+    gather_result_file = os.path.join(analysis_folder,"gathered_results.json")
+
+    RESULTS = {}
+
+    expressions = glob.glob(RESULT_FOLDER_BASE+"/*_*")
+    for exp in expressions:
+        gather_results(exp)
+
+    #for k in sorted(RESULTS[expressions[0]]):
+    #    print(k)
+
+    with open(gather_result_file,'w') as outfile:
+        json.dump(RESULTS,outfile)
