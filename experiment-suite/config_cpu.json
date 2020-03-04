@@ -1,9 +1,9 @@
 {
 	"test_expressions_folder":"test_expressions_sample",
 	"cluster":false,
-	"num_app_examples":3,
+	"num_app_examples":25,
 	"num_random_examples":1,
 	"num_threads":4,
-	"num_reps":3,
+	"num_reps":1,
 	"time_limit":30
 }

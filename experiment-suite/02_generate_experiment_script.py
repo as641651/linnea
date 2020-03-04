@@ -16,7 +16,7 @@ def generate_julia_runner(test_exp_folder,result_folder,id,sub_reps):
     operand_file = os.path.abspath(os.path.join(base_folder,"operand_generator.jl"))
     TEMPLATE_DICT["include_operand_generator"] = "include(\"{}\")".format(operand_file)
 
-    experiment_folder = os.path.abspath(os.path.join(base_folder,"k_best"))
+    experiment_folder = os.path.abspath(os.path.join(base_folder,"experiments"))
     algorithms = glob.glob(experiment_folder + "/*.jl")
     algorithms = [(exp.split("/")[-1].split(".")[0],exp) for exp in algorithms]
     random.shuffle(algorithms)
