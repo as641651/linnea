@@ -1,0 +1,9 @@
+{
+	"test_expressions_folder":"test_expressions_sample",
+	"cluster":true,
+	"num_app_examples":3,
+	"num_random_examples":1,
+	"num_threads":24,
+	"num_reps":20,
+	"time_limit":30
+}
