@@ -8,7 +8,7 @@ import sys
 import pprint
 import re
 
-DEBUG_FLOPS = True
+DEBUG_FLOPS = False
 
 def generate_julia_runner(test_exp_folder,result_folder,id,sub_reps):
 
@@ -128,7 +128,7 @@ if __name__ == "__main__":
         os.mkdir(RESULT_FOLDER_BASE)
 
     compute_data = get_data(TEST_EXPRESSIONS_FOLDER)
-    compute_data["flops"] = get_flops(TEST_EXPRESSIONS_FOLDER)
+    #compute_data["flops"] = get_flops(TEST_EXPRESSIONS_FOLDER)
     with open(os.path.join(RESULT_FOLDER_BASE,"computeData.json"),"w") as f:
         json.dump(compute_data,f)
     if DEBUG_FLOPS:
