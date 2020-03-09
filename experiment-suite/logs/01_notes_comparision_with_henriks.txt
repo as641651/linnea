@@ -1,0 +1,37 @@
+Generated algorithms are non deterministic. So direct comparision not possible. However majority of results overlap
+
+Speed up > 1.0
+Bootstrap settings : M =2, R = 30, T = 0.9
+
+henriks list  98
+speedups my list  36
+Num matches : 32/36
+
+
+Speed up > 1.4
+
+Henriks Match with mine
+application019 NOT MATCH 1.4483831938766412
+application021 NOT MATCH 1.5107060373190313
+random009 MATCH 1.6426109432223703
+random015 NOT MATCH 1.4274364962219663
+random036 MATCH 1.7412322716152204
+random038 MATCH 1.6124783083775076
+random064 MATCH 1.7242297763116463
+random078 MATCH 1.4143717528109818
+random100 NOT MATCH 1.4758511517508337
+
+henriks list  9
+speedups my list  36
+Num matches : 5/9 has significant difference
+
+My Match with Henrik
+application007 NOT MATCH 1.554 1.0511903200191697
+random036 MATCH 1.567 1.7412322716152204
+**random034 NOT MATCH 2.609 1.0**
+random078 MATCH 1.406 1.4143717528109818
+random009 MATCH 1.63 1.6426109432223703
+
+henriks list  9
+speedups my list  5
+Num matches : 3/5 has equivalent speedups
