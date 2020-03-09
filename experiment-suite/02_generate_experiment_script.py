@@ -6,8 +6,9 @@ import shutil
 import json
 import sys
 import pprint
+import re
 
-DEBUG_FLOPS = False
+DEBUG_FLOPS = True
 
 def generate_julia_runner(test_exp_folder,result_folder,id,sub_reps):
 
@@ -62,7 +63,9 @@ def get_flops(test_cases_folder):
                 for line in lines:
                     if "cost:" in line:
                         cost = line.split("cost:")[-1].split()[0]
-                        flops[key][alg.split("/")[-1].split(".")[0]] = cost
+                        alg_key = re.findall("\d+(?=algorithm)?$",alg.split("/")[-1].split(".")[0])[0]
+                        flops[key][alg_key] = cost
+                        #flops[key][alg.split("/")[-1].split(".")[0]] = cost
 
     return flops
 
@@ -125,6 +128,7 @@ if __name__ == "__main__":
         os.mkdir(RESULT_FOLDER_BASE)
 
     compute_data = get_data(TEST_EXPRESSIONS_FOLDER)
+    compute_data["flops"] = get_flops(TEST_EXPRESSIONS_FOLDER)
     with open(os.path.join(RESULT_FOLDER_BASE,"computeData.json"),"w") as f:
         json.dump(compute_data,f)
     if DEBUG_FLOPS:

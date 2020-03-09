@@ -19,10 +19,12 @@ def generate_expressions():
 
     random.seed(0)
     rand_exprs = [generate_equation(random.randint(4, 7)) for _ in range(NUM_RANDOM_EXAMPLES)]
+    #rand_exprs = [generate_equation(random.randint(4, 7)) for _ in range(74,99)]
 
     for i,ex in enumerate(rand_exprs):
-    	#print("Random ", i,ex)
-        eqns["Random_"+str(object=i)] = ex
+      #if(i==33):
+         print("Random ", i,ex)
+         eqns["Random_"+str(object=i)] = ex
 
     return eqns
 

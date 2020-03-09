@@ -97,6 +97,7 @@ if __name__ == "__main__":
                 best_alg_id = int(i)
 
         if(best_alg_id != 0 ):
+            #print(k)
             ta = min(data[k]["0"])
             flops_a = float(compute_data["flops"][k.split("/")[-1]]["0"])
             intensity_a = float(compute_data["intensity"][k.split("/")[-1]]["0"])

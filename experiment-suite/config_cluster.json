@@ -1,8 +1,8 @@
 {
-	"test_expressions_folder":"test_expressions_sample",
+	"test_expressions_folder":"test_expressions",
 	"cluster":true,
-	"num_app_examples":3,
-	"num_random_examples":1,
+	"num_app_examples":25,
+	"num_random_examples":100,
 	"num_threads":24,
 	"num_reps":20,
 	"time_limit":30
