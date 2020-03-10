@@ -8,7 +8,7 @@ input = pd.read_csv(filename,sep=";")
 
 
 #print(list(input.columns))
-SU = 1.2
+SU = 1.0
 henriks_list = list(input[input.speedup > SU].example)
 
 #print(input.speedup)
@@ -16,7 +16,9 @@ henriks_list = list(input[input.speedup > SU].example)
 mylist = []
 speedups = []
 speedups_filtered = []
-mylog = "run3/Analysis/analysis_0.9_2_30.txt"
+#mylog = "run3/Analysis/analysis_0.9_2_30.txt"
+mylog = "run3/Analysis/Rank_analysis_0.9_4_30.txt"
+#mylog = "run3/Analysis/analysis_0.9_4_30.txt"
 #mylog = "run3/Analysis/analysis_0.5_18_1.txt"
 f = open(mylog)
 lines = f.readlines()
